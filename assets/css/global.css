@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300');
+@import url('./iconmoon/style.css');
+
 /* Variables
 /* ---------------------------------------------------------- */
 
 :root {
     /* Colours */
-    --blue: #3eb0ef;
+    --bright-text: #ccc;
+    --blue: #1b83bb;
     --green: #a4d037;
     --purple: #ad26b4;
     --yellow: #fecd35;
@@ -15,6 +19,7 @@
     --pink: #fa3a57;
     --brown: #a3821a;
 }
+
 
 /* Reset
 /* ---------------------------------------------------------- */
@@ -183,7 +188,8 @@ svg:not(:root) {
     overflow: hidden;
 }
 mark {
-    background-color: #fdffb6;
+    background-color: #791b24;
+    color: #a3a3a3;
 }
 code,
 kbd,
