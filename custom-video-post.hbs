@@ -8,25 +8,21 @@ into the {body} of the default.hbs template --}}
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
 
-<main id="site-main" class="site-main outer">
+<main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+        <article class="post-full {{post_class}}">
 
             <header class="post-full-header">
-                <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMMM YYYY"}}</time>
-                    {{#primary_tag}}
-                        <span class="date-divider">/</span> <a href="{{url}}">{{name}}</a>
-                    {{/primary_tag}}
-                </section>
                 <h1 class="post-full-title">{{title}}</h1>
+                {{#author}}
+                <h4 class="author-card-name"><a href="{{url}}">{{name}}</a></h4>
+                {{/author}}
             </header>
 
-            {{#if feature_image}}
-            <figure class="post-full-image" style="background-image: url({{feature_image}})">
-            </figure>
-            {{/if}}
+            <div id="vidContainer">
+                <object id="vidPlayer" class="hidden" data="http://www.youtube.com/embed/"></object>
+            </div>
 
             <section class="post-full-content">
                 {{content}}
@@ -94,5 +90,5 @@ into the {body} of the default.hbs template --}}
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
-
+    <script>$('#vidPlayer').attr("data", function() { return $(this).attr("data") + videoHash }).removeClass("hidden");</script>
 {{/contentFor}}

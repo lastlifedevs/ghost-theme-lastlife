@@ -13,6 +13,9 @@
 
     {{!-- Styles'n'Scripts --}}
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+    <link rel="stylesheet" type="text/css" href="/static/logo.css" />
+    <link rel="preload" href="/assets/img/tooth.png" as="image" />
+    {{#is post}}<script>var videoHash;</script>{{/is}}
 
     {{!-- This tag outputs SEO meta+structured data and other important settings --}}
     {{ghost_head}}
@@ -24,6 +27,22 @@
 
         {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
         {{{body}}}
+
+        {{!-- SelfStyle --}}
+        <div class="sest-toggle"><i class="icon-palette"></i></div>
+        <div class="selfstyle">
+            <div class="sest-body">
+                <div class="sest-header">SelfStyle <button id="sest-close-btn" type="button">&times;</button></div>
+                <form id="sest-form">
+                    <div class="sest-form-row">
+                        <input id="text-brightness-range" type="range" min="0" max="255" step="1" value="204" data-sel=".post-card-content-link, .post-full-content, .selfstyle, .post-full-content em, .post-full-content strong, .post-full-content h1, .post-full-content h2, .post-full-content h3, .post-full-content h4, .post-full-content h5, .post-full-content h6" data-prop="color">
+                        <label for="text-brightness-range">Text Brightness</label>
+                    </div>
+                    <button type="submit">Save</button>
+                    <button type="reset">Reset</button>
+                </form>
+            </div>
+        </div>
 
         {{!-- The footer at the very bottom of the screen --}}
         <footer class="site-footer outer">
@@ -39,22 +58,6 @@
         </footer>
 
     </div>
-
-    {{!-- The big email subscribe modal content --}}
-    {{#if @labs.subscribers}}
-    <div id="subscribe" class="subscribe-overlay">
-        <a class="subscribe-overlay-close" href="#"></a>
-        <div class="subscribe-overlay-content">
-            {{#if @blog.logo}}
-                <img class="subscribe-overlay-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
-            {{/if}}
-            <h1 class="subscribe-overlay-title">Subscribe to {{@blog.title}}</h1>
-            <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
-            {{subscribe_form placeholder="youremail@example.com"}}
-        </div>
-    </div>
-    {{/if}}
-
     <script>
         var images = document.querySelectorAll('.kg-gallery-image img');
         images.forEach(function (image) {
@@ -65,7 +68,6 @@
             container.style.flex = ratio + ' 1 0%';
         })
     </script>
-
 
     {{!-- jQuery + Fitvids, which makes all video embeds responsive --}}
     <script
@@ -87,6 +89,20 @@
 
     {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
     {{{block "scripts"}}}
+
+    <script type="text/javascript" src="{{asset "js/sest.min.js"}}"></script>
+
+    {{!-- We only need Skrollr for the index page. --}}
+    {{#is "index"}}
+    <script type="text/javascript" src="{{asset "/js/skrollr.min.js"}}"></script>
+	<script type="text/javascript">
+	    var s = skrollr.init();
+        if (s.isMobile() || $(window).width() <= 679) {
+            s.destroy();
+        }
+        document.body.style.visibility = "visible";
+	</script>
+    {{/is}}
 
     {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
     {{ghost_foot}}
