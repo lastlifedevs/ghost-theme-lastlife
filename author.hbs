@@ -3,8 +3,8 @@
 
 {{> "header"}}
 
-{{#author}}
-{{!-- Everything inside the #author tags pulls data from the author --}}
+{{#primary_author}}
+{{!-- Everything inside the #primary_author tags pulls data from the author --}}
 <header class="outer creator-header {{#if cover_image}}" style="background-image: url({{cover_image}}){{else}}no-cover{{/if}}">
     <div class="inner"> 
         <div class="site-header-content">
@@ -38,7 +38,7 @@
         </div>
     </div>
 </header>
-{{/author}}
+{{/primary_author}}
 
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
