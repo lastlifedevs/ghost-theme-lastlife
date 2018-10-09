@@ -4,11 +4,65 @@ into the {body} of the default.hbs template --}}
 
 {{> "header"}}
 
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
     
         <header class="post-full-header">
-            <h1 class="post-full-title">About Last Life</h1>
+            <h1 class="post-full-title">Creators</h1>
         </header>
+
+        <section class="page-description">
+            Here, you'll find Last Life's hard-working team of content creators. Click on an icon to view that creator's profile.
+        </section>
+
+        {{#get "users" limit="all" order="created_at asc"}}
+        <div class="icons-container">
+            {{#foreach users}}
+            <figure class="user-figure">
+                <a href={{url}}><img class="profile-icon" src="{{img_url profile_image}}" data-prof-id="{{id}}"></a>
+                <figcaption class="user-caption lg-hidden">{{name}}</figcaption>
+            </figure>
+            {{/foreach}}
+        </div>
+        <div id="profiles-container" class="profiles-container-bottom hidden-md">
+            {{#foreach users}}
+            <div id="profile-{{id}}" class="creator-profile">
+                <span class="rpg-box text-emphasis creator-name">{{name}}</span>
+                <div class="rpg-box text-emphasis creator-bio">{{bio}}</div>
+            </div>
+            {{/foreach}}
+        </div>
+        {{/get}}
+
     </div>
 </main>
+
+{{/post}}
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+<script>
+$(document).ready((function() {
+    var currentIcon = null;
+    $(".profile-icon").hover(function(){
+        currentIcon = $(this);
+        if ((currentIcon.offset().top - $(window).scrollTop()) > window.innerHeight / 2) {
+            $("#profiles-container").addClass("profiles-container-top");
+            $("#profiles-container").removeClass("profiles-container-bottom");
+        } else {
+            $("#profiles-container").addClass("profiles-container-bottom");
+            $("#profiles-container").removeClass("profiles-container-top");
+        }
+        $(".creator-profile").stop().hide();
+        var selector = $.escapeSelector($(this).data("prof-id"));
+        $("#profile-"+selector).fadeIn();
+    }, function() {
+        var selector = $.escapeSelector($(this).data("prof-id"));
+        $(".creator-profile").hide();
+    });
+}));
+</script>
+{{/contentFor}}
