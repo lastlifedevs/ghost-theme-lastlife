@@ -11,31 +11,52 @@ into the {body} of the default.hbs template --}}
     <div class="inner">
     
         <header class="post-full-header">
-            <h1 class="post-full-title">Creators</h1>
+            <h1 class="post-full-title">About Last Life</h1>
         </header>
 
         <section class="page-description">
-            Here, you'll find Last Life's hard-working team of content creators. Click on an icon to view that creator's profile.
+            <p>Last Life is an online community that aims to foster thoughtful discussion of games and the 
+            many ways that they enrich our lives. The site itself is host to a collection of such content, 
+            typically in the form of video essays by our team of <a href="#creators">content creators</a>.
+            We also have a dedicated <a href="/forum/">forum</a> for in-depth discussion with other users 
+            on a wide variety of topics.</p>
+            <p>Of course, no gaming community is complete without a Discord server, and you can find ours 
+            <a href="#DISCORDLINK">right here</a>.</p>
+            <p>Stay tuned here or on <a href="#links">our social media channels</a> for community game 
+            nights, special live streams, major site updates, and other goings-on.</p>
         </section>
 
-        {{#get "users" limit="all" order="created_at asc"}}
-        <div class="icons-container">
-            {{#foreach users}}
-            <figure class="user-figure">
-                <a href={{url}}><img class="profile-icon" src="{{img_url profile_image}}" data-prof-id="{{id}}"></a>
-                <figcaption class="user-caption lg-hidden">{{name}}</figcaption>
-            </figure>
-            {{/foreach}}
-        </div>
-        <div id="profiles-container" class="profiles-container-bottom hidden-md">
-            {{#foreach users}}
-            <div id="profile-{{id}}" class="creator-profile">
-                <span class="rpg-box text-emphasis creator-name">{{name}}</span>
-                <div class="rpg-box text-emphasis creator-bio">{{bio}}</div>
+        <section id="creators">
+            <h3>Creators</h3>
+
+            {{#get "users" limit="all" order="created_at asc"}}
+            <div class="icons-container">
+                {{#foreach users}}
+                <figure class="user-figure">
+                    <a href={{url}}><img class="profile-icon" src="{{img_url profile_image}}" data-prof-id="{{id}}"></a>
+                    <figcaption class="user-caption lg-hidden">{{name}}</figcaption>
+                </figure>
+                {{/foreach}}
             </div>
-            {{/foreach}}
-        </div>
-        {{/get}}
+            <div id="profiles-container" class="profiles-container-bottom hidden-md">
+                {{#foreach users}}
+                <div id="profile-{{id}}" class="creator-profile">
+                    <span class="rpg-box text-emphasis creator-name">{{name}}</span>
+                    <div class="rpg-box text-emphasis creator-bio">{{bio}}</div>
+                </div>
+                {{/foreach}}
+            </div>
+            {{/get}}
+        </section>
+
+        <section id="inks">
+            <div class="social-media-links">    
+                <a href="https://twitter.com/lastlifedotnet" class="twitter" tooltip="Twitter: lastlifedotnet"><i class="ll-social-icon icon-twitter"></i></a>
+                <a href="#MastadonInstanceLink" class="Mastadon" tooltip="Mastadon: lastlifedotnet@[get an instance here]"><i class="ll-social-icon icon-mastadon"></i></a>
+                <a href="#youtubechannel" class="youtube" tooltip="YouTube"><i class="ll-social-icon icon-youtube"></i></a>
+                <a href="#steamgrouplink" class="steam" tooltip="Last Lifers Steam Group"><i class="ll-social-icon icon-steam"></i></a>
+            </div>
+        </section>
 
     </div>
 </main>
