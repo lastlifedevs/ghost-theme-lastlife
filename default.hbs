@@ -34,8 +34,21 @@
                 <div class="sest-header">SelfStyle <button id="sest-close-btn" type="button">&times;</button></div>
                 <form id="sest-form">
                     <div class="sest-form-row">
-                        <input id="text-brightness-range" type="range" min="0" max="255" step="1" value="204" data-sel=".post-card-content-link, .post-full-content, .selfstyle, .post-full-content em, .post-full-content strong, .post-full-content h1, .post-full-content h2, .post-full-content h3, .post-full-content h4, .post-full-content h5, .post-full-content h6" data-prop="color">
                         <label for="text-brightness-range">Text Brightness</label>
+                        <input id="text-brightness-range" type="range" min="0" max="255" step="1" value="204" data-sel=".post-card-content-link, .post-full-content, .selfstyle, .post-full-content em, .post-full-content strong, .post-full-content h1, .post-full-content h2, .post-full-content h3, .post-full-content h4, .post-full-content h5, .post-full-content h6" data-prop="color">
+                    </div>
+                    <div class="sest-form-row">
+                        <span>Background Gradient</span>
+                        <div class="sest-field-group">
+                            <div class="sest-form-row">
+                                <label for="bg-grad-start">Color Start: </label>
+                                <input id="bg-grad-start" class="jscolor" value="222942">
+                            </div>
+                            <div class="sest-form-row">
+                                <label for="bg-grad-end">Color End: </label>
+                                <input id="bg-grad-end" class="jscolor" value="1a1d2f">
+                            </div>
+                        </div>
                     </div>
                     <button type="submit">Save</button>
                     <button type="reset">Reset</button>

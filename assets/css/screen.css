@@ -2797,9 +2797,13 @@ section.page-description {
 }
 
 .sest-form-row label {
-    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .selfstyle button {
     color: #000;
+}
+
+.selfstyle .jscolor {
+    width: 9rem;
 }
