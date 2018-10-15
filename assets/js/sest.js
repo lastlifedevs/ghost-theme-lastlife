@@ -2,7 +2,7 @@
  * SelfStyle 
  *
  * Copyright 2018 Joshua Balanuik
- * Released under the MIT license
+ * Released under the Apache License 2.0
  */
 
 function selfStyle(elem, prop, value) {
@@ -35,11 +35,14 @@ function updateMultiRange(rangeGroupElem) {
     // Assuming we'll get ranges as an array. Make sure to actually do this.
     switch (prop) {
         case 'color':
+        case 'background':
             value += 'rgb(' + $ranges[0].val() + ',' + $ranges[1].val() + ',' + $ranges[2].val() + ')';
             break;
-        case 'alphacolor':
+        case 'alpha-color':
+        case 'alpha-background':
             value += 'rgba(' + $ranges[0].val() + ',' + $ranges[1].val() + ',' + $ranges[2].val() + ',' + $ranges[3].val() + ')';
-            prop = 'color';
+            prop = prop.substring(6);
+            break;
         default:
             break;
     }

@@ -26,29 +26,6 @@ into the {body} of the default.hbs template --}}
             nights, special live streams, major site updates, and other goings-on.</p>
         </section>
 
-        <section id="creators">
-            <h3>Creators</h3>
-
-            {{#get "users" limit="all" order="created_at asc"}}
-            <div class="icons-container">
-                {{#foreach users}}
-                <figure class="user-figure">
-                    <a href={{url}}><img class="profile-icon" src="{{img_url profile_image}}" data-prof-id="{{id}}"></a>
-                    <figcaption class="user-caption lg-hidden">{{name}}</figcaption>
-                </figure>
-                {{/foreach}}
-            </div>
-            <div id="profiles-container" class="profiles-container-bottom hidden-md">
-                {{#foreach users}}
-                <div id="profile-{{id}}" class="creator-profile">
-                    <span class="rpg-box text-emphasis creator-name">{{name}}</span>
-                    <div class="rpg-box text-emphasis creator-bio">{{bio}}</div>
-                </div>
-                {{/foreach}}
-            </div>
-            {{/get}}
-        </section>
-
         <section id="inks">
             <div class="social-media-links">    
                 <a href="https://twitter.com/lastlifedotnet" class="twitter" tooltip="Twitter: lastlifedotnet"><i class="ll-social-icon icon-twitter"></i></a>

@@ -12,21 +12,12 @@ It's a good idea to keep this template as minimal as possible in terms of both f
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "built/logo.css"}}" />
 </head>
 <body class="error-template">
     <div class="site-wrapper">
 
-        <header class="site-header outer {{#if feature_image}}" style="background-image: url({{feature_image}}){{else}}no-cover{{/if}}">
-            <div class="inner">
-                <nav class="site-nav-center">
-                    {{#if @blog.logo}}
-                        <a class="site-nav-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>
-                    {{else}}
-                        <a class="site-nav-logo" href="{{@blog.url}}">{{@blog.title}}</a>
-                    {{/if}}
-                </nav>
-            </div>
-        </header>
+        {{> "header"}}
 
         <main id="site-main" class="site-main outer">
             <div class="inner">
@@ -38,18 +29,6 @@ It's a good idea to keep this template as minimal as possible in terms of both f
                 </section>
             </div>
         </main>
-
-        {{#get "posts" limit="3"}}
-        <aside class="outer">
-            <div class="inner">
-                <div class="post-feed">
-                    {{#foreach posts}}
-                        {{> "post-card"}}
-                    {{/foreach}}
-                </div>
-            </div>
-        </aside>
-        {{/get}}
 
     </div>
 </body>

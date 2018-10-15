@@ -89,7 +89,9 @@
     {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
     {{{block "scripts"}}}
 
+    {{!-- SelfStyle --}}
     <script type="text/javascript" src="{{asset "js/sest.min.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/jscolor.js"}}"></script>
 
     {{!-- We only need Skrollr for the index page. --}}
     {{#is "index"}}
