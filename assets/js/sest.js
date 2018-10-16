@@ -5,15 +5,17 @@
  * Released under the Apache License 2.0
  */
 
+const GRADIENT_PREFIX = 'grad-';
+
 function selfStyle(elem, prop, value) {
     var $elem = $(elem);
-    $($elem.attr("data-sel")).css(prop, value);
-    $elem.attr("data-val", value);
+    $($elem.data('sel')).css(prop, value);
+    $elem.data('val', value);
 }
 
 function updateRange(rangeElem) {
     var $elem = $(rangeElem);
-    var prop = $elem.attr("data-prop");
+    var prop = $elem.data('prop');
     var value = '';
     switch (prop) {
         case 'color':
@@ -27,27 +29,25 @@ function updateRange(rangeElem) {
     selfStyle($elem, prop, value);
 }
 
-function updateMultiRange(rangeGroupElem) {
-    var $ranges = $(rangeGroupElem);
-    var prop = $ranges.attr("data-prop");
+function updateJsColor(jsColorElem) {
+    var $elem = $(jsColorElem.valueElement);
+    var prop = $elem.data('prop');
     var value = '';
 
-    // Assuming we'll get ranges as an array. Make sure to actually do this.
-    switch (prop) {
+    switch(prop) {
         case 'color':
-        case 'background':
-            value += 'rgb(' + $ranges[0].val() + ',' + $ranges[1].val() + ',' + $ranges[2].val() + ')';
+            value = jsColorElem.toHEXString();
             break;
-        case 'alpha-color':
-        case 'alpha-background':
-            value += 'rgba(' + $ranges[0].val() + ',' + $ranges[1].val() + ',' + $ranges[2].val() + ',' + $ranges[3].val() + ')';
-            prop = prop.substring(6);
+        case 'grad-background':
+            // Get the current gradient color definition
+            let curBG = $($elem.data('sel')).css('background');
+            // TODO FINISH THIS
             break;
         default:
             break;
     }
-
-    selfStyle($ranges, prop, value);
+    
+    selfStyle($elem, prop, value);
 }
 
 $(".sest-form-row input[type=range]").on("change mousemove", function() {
@@ -59,7 +59,7 @@ function outputSeStPrefs() {
     var $inputs = $(".sest-form-row input");
     $inputs.each(function(index) {
         var $e = $(this);
-        output += $e.attr("data-sel") + '/' + $e.attr("data-prop") + '/' + $e.attr("data-val");
+        output += $e.data('sel') + '/' + $e.data('prop') + '/' + $e.data('val');
         if (index !== $inputs.length - 1) {
             output += '\\';
         }
@@ -82,6 +82,9 @@ function refreshSeStPrefs() {
     // TODO: Add any other input types.
     $(".sest-form-row input[type=range]").each(function(index, elem) {
         updateRange($(elem));
+    });
+    $(".sest-form-row input.jscolor").each(function(index, elem) {
+        updateJsColor($(elem));
     });
 }
 

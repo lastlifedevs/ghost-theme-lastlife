@@ -2796,6 +2796,11 @@ section.page-description {
     padding: 0.5rem 0;
 }
 
+.sest-field-group > .sest-form-row {
+    padding: 0;
+    justify-content: flex-end;
+}
+
 .sest-form-row label {
     margin-right: 1rem;
 }
@@ -2806,4 +2811,6 @@ section.page-description {
 
 .selfstyle .jscolor {
     width: 9rem;
+    border-color: #a3a3a3;
+    text-align: center;
 }
