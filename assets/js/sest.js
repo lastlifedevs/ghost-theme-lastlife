@@ -39,9 +39,19 @@ function updateJsColor(jsColorElem) {
             value = jsColorElem.toHEXString();
             break;
         case 'grad-background':
-            // Get the current gradient color definition
-            let curBG = $($elem.data('sel')).css('background');
-            // TODO FINISH THIS
+            prop = prop.substring(GRADIENT_PREFIX.length);
+            // Get the field group this color stop belongs to.
+            let fgVal = $elem.data('fg');
+            if (fgVal === undefined) return;
+            let fg = $(".sest-field-group [data-fg=" + fgVal + "]");
+            value = "linear-gradient(#"
+            for (let i = 0; i < fg.length; i++) {
+                value += fg[i].value;
+                if(i !== fg.length-1) {
+                    value += ", #"
+                }
+            }
+            value += ")";
             break;
         default:
             break;
@@ -70,7 +80,7 @@ function outputSeStPrefs() {
 $("#sest-form").submit(function(event) {
     localStorage.setItem('sest-prefs', outputSeStPrefs());
     event.preventDefault();
-})
+});
 
 $("#sest-form button[type='reset']").click(function(event) {
     event.preventDefault();
@@ -82,9 +92,6 @@ function refreshSeStPrefs() {
     // TODO: Add any other input types.
     $(".sest-form-row input[type=range]").each(function(index, elem) {
         updateRange($(elem));
-    });
-    $(".sest-form-row input.jscolor").each(function(index, elem) {
-        updateJsColor($(elem));
     });
 }
 
