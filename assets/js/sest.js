@@ -66,14 +66,22 @@ $(".sest-form-row input[type=range]").on("change mousemove", function() {
 
 function outputSeStPrefs() {
     var output = '';
-    var $inputs = $(".sest-form-row input");
-    $inputs.each(function(index) {
-        var $e = $(this);
+    var $fields = $("#sest-form input.sest-field");
+    for (let i = 0; i < $fields.length; i++) {
+        var $e = $(fields[i]);
         output += $e.data('sel') + '/' + $e.data('prop') + '/' + $e.data('val');
-        if (index !== $inputs.length - 1) {
+        if (index !== $fields.length - 1) {
             output += '\\';
         }
-    });
+    }
+    var $fieldGroups = $("#sest-form .sest-field-group");
+    if (output !== '' && $fieldGroups.length > 0) {
+        output += '\\';
+    }
+    for (let i = 0; i < $fieldGroups.length; i++) {
+        // TODO: Use field group elem to save properties and selectors?
+        let $fields = $($fieldGroups[i]).find('input');
+    }
     return output;
 }
 
