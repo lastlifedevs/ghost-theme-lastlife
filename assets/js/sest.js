@@ -44,10 +44,10 @@ function updateJsColor(jsColorElem) {
             let fgVal = $elem.data('fg');
             if (fgVal === undefined) return;
             let fg = $(".sest-field-group [data-fg=" + fgVal + "]");
-            value = "linear-gradient(#"
+            value = "linear-gradient(#";
             for (let i = 0; i < fg.length; i++) {
                 value += fg[i].value;
-                if(i !== fg.length-1) {
+                if (i !== fg.length-1) {
                     value += ", #"
                 }
             }
@@ -68,9 +68,9 @@ function outputSeStPrefs() {
     var output = '';
     var $fields = $("#sest-form input.sest-field");
     for (let i = 0; i < $fields.length; i++) {
-        var $e = $(fields[i]);
-        output += $e.data('sel') + '/' + $e.data('prop') + '/' + $e.data('val');
-        if (index !== $fields.length - 1) {
+        var $f = $($fields[i]);
+        output += $f.data('sel') + '/' + $f.data('prop') + '/' + $f.data('val');
+        if (i !== $fields.length - 1) {
             output += '\\';
         }
     }
@@ -79,8 +79,22 @@ function outputSeStPrefs() {
         output += '\\';
     }
     for (let i = 0; i < $fieldGroups.length; i++) {
-        // TODO: Use field group elem to save properties and selectors?
-        let $fields = $($fieldGroups[i]).find('input');
+        output += 'fieldGroup[';
+        let $fgFields = $($fieldGroups[i]).find('input');
+        output+= $($fgFields[0]).data('sel') + '/' + $($fgFields[0]).data('prop') + '/';
+
+        for (let j = 0; j < $fgFields.length; j++) {
+            output += $($fgFields[j]).data('val');
+            if (j !== $fgFields.length - 1) {
+                output += ',';
+            }
+        }
+
+        output += ']';
+        
+        if (i !== $fieldGroups.length - 1) {
+            output += '\\';
+        }
     }
     return output;
 }
@@ -117,6 +131,9 @@ function rangeSeStInput(input, prop, value) {
 
 function applySeStPrefs(prefs) {
     var rulesets = prefs.split('\\');
+    for(let i = 0; i < rulesets.length; i++) {
+
+    }
     rulesets.forEach(function(rs) {
         var r = rs.split('/');
         if (r[2] !== 'undefined') {
