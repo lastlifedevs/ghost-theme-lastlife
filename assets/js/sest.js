@@ -152,7 +152,11 @@ function applySeStPrefs(prefs) {
         let pref = prefsArray[i].split('/');
 
         if (pref[0].startsWith(FIELD_GROUP_PREFIX)) {
-            pref = pref.substring(FIELD_GROUP_PREFIX.length, pref.length);
+            // Remove the field group prefix and closing bracket.
+            pref[0] = pref[0].substring(FIELD_GROUP_PREFIX.length, pref.length);
+            pref[2] = pref[2].substring(0, pref[2].length-1);
+
+            
         } else {
             $(pref[0]).css(pref[1], pref[2]);
             var $sestInput = $("input[data-sel='" + pref[0] + "'][data-prop='" + pref[1] + "']");
