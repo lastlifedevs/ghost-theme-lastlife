@@ -6,7 +6,7 @@ var livereload = require('gulp-livereload');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
-var uglify = require('gulp-uglify');
+var terser = require('gulp-terser');
 var filter = require('gulp-filter');
 
 // postcss plugins
@@ -57,7 +57,7 @@ gulp.task('js', function () {
         .on('error', swallowError)
         .pipe(sourcemaps.init())
         .pipe(jsFilter)
-        .pipe(uglify())
+        .pipe(terser())
         .pipe(jsFilter.restore)
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('assets/built/'))
