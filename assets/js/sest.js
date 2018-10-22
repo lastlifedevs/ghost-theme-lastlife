@@ -15,22 +15,7 @@ const GRADIENT_PREFIX = 'grad-';
 /**
  * Prefix used to indicate a saved SeSt preference is a field group.
  */
-const FIELD_GROUP_PREFIX = 'fieldGroup[';
-
-/**
- * @param {jQuery} elem - the jQuery-selected SeSt input element.
- * @param {string} prop - the css property to be modified.
- * @param {string} value - the css value to use for the given property - Note that this is not always the literal value contained within `elem`.
- * @param {boolean} assign - indicates whether or not the value should be saved as an HTML property in the input element. 
- *                           Should be `true` for single fields, and `false` for fields within a field group.
- */
-function selfStyle(elem, prop, value, assign) {
-    var $elem = $(elem);
-    $($elem.data('sel')).css(prop, value);
-    if (assign) {
-        $elem.data('val', value);
-    }
-}
+const FIELD_GROUP_PREFIX = 'fieldGroup:';
 
 /**
  * Updates a `range`-type SeSt input element on request or in real-time.
@@ -45,12 +30,13 @@ function updateRange(rangeElem) {
         case 'color':
             // Used only to set brightness of 0 sat 0 hue colours.
             value = 'rgb(' + $elem.val() + ',' + $elem.val() + ',' + $elem.val() + ')';
+            $elem.data('val', $elem.val());
             break;
         default:
             break;
     }
 
-    selfStyle($elem, prop, value, true);
+    $($elem.data('sel')).css(prop, value);
 }
 
 /**
@@ -84,15 +70,20 @@ function updateJsColor(jsColorElem) {
                 }
             }
             value += ")";
-            assign = false;
             break;
         default:
             break;
     }
 
-    selfStyle($elem, prop, value, assign);
+    $($elem.data('sel')).css(prop, value);
 }
 
+/**
+ * Returns a single string containing all SeSt preferences, to be saved in localstorage, 
+ * or possibly exported/imported. Each SeSt preference string contains a CSS selector,
+ * the name of the CSS property to be modified, and the value of the SeSt input(s).
+ * Note that the value of the SeSt input is not necessarily a valid CSS property value.
+ */
 function outputSeStPrefs() {
     var output = '';
 
@@ -100,7 +91,7 @@ function outputSeStPrefs() {
     var $fields = $("#sest-form input.sest-field");
     for (let i = 0; i < $fields.length; i++) {
         var $f = $($fields[i]);
-        // e.g. '.header-block/background/#131313'
+        // e.g. '.header-block/background/131313'
         output += $f.data('sel') + '/' + $f.data('prop') + '/' + $f.data('val');
         if (i !== $fields.length - 1) {
             output += '\\';
@@ -119,19 +110,16 @@ function outputSeStPrefs() {
         let $fgFields = $($fieldGroups[i]).find('input');
 
         // use the data on the first input element to populate the first part of the SeSt preference
-        // e.g. '.article-body .text-field/grad-background/'
+        // e.g. output = 'fieldGroup:.article-body .text-field/grad-background/'
         output += $($fgFields[0]).data('sel') + '/' + $($fgFields[0]).data('prop') + '/';
 
         for (let j = 0; j < $fgFields.length; j++) {
-            output += $($fgFields[j]).data('val');
+            output += '#' + $($fgFields[j]).data('val');
             if (j !== $fgFields.length - 1) {
                 output += ',';
             }
         }
-
-        // e.g. 'fieldGroup[.article-body .text-field/grad-background/#121212,#323232,#434343]'
-        output += ']';
-
+        // e.g. 'fieldGroup:.article-body .text-field/grad-background/#121212,#323232,#434343'
         if (i !== $fieldGroups.length - 1) {
             output += '\\';
         }
@@ -141,9 +129,15 @@ function outputSeStPrefs() {
 
 function refreshSeStPrefs() {
     // TODO: Add any other input types.
-    $(".sest-form-row input[type=range]").each(function(index, elem) {
-        updateRange($(elem));
-    });
+    let $sestForm = $("#sest-form");
+    let $rangeElems = $sestForm.find("input[type=range]");
+    for(let i = 0; i < $rangeElems.length; i++) {
+        updateRange($($rangeElems[i]));
+    }
+    let $jscolorElems = $sestForm.find('input.jscolor');
+    for(let i = 0; i < $jscolorElems.length; i++) {
+        updateJsColor($($jscolorElems[i]));
+    }
 }
 
 function applySeStPrefs(prefs) {
@@ -152,27 +146,33 @@ function applySeStPrefs(prefs) {
         let pref = prefsArray[i].split('/');
 
         if (pref[0].startsWith(FIELD_GROUP_PREFIX)) {
-            // Remove the field group prefix and closing bracket.
-            pref[0] = pref[0].substring(FIELD_GROUP_PREFIX.length, pref.length);
-            pref[2] = pref[2].substring(0, pref[2].length-1);
-
-            
+            // Remove the field group prefix.
+            pref[0] = pref[0].substring(FIELD_GROUP_PREFIX.length, pref[0].length);
+            switch (pref[1]) {
+                case 'grad-background':
+                    pref[1] = pref[1].substring(GRADIENT_PREFIX.length);
+                    $(pref[0]).css(pref[1], 'linear-gradient(' + pref[2] + ')');
+                    break;
+                default:
+                    break;
+            }
         } else {
-            $(pref[0]).css(pref[1], pref[2]);
-            var $sestInput = $("input[data-sel='" + pref[0] + "'][data-prop='" + pref[1] + "']");
-            window[$sestInput.attr("type") + 'SeStInput']($sestInput, pref[1], pref[2]);
+            let $sestControl = $("input[data-sel='" + pref[0] + "'][data-prop='" + pref[1] + "']");
+            $sestControl.val(pref[2]);
+            if ($sestControl.attr('type') === 'range') {
+                updateRange($sestControl);
+            } else if ($sestControl.hasClass('jscolor')) {
+                updateJsColor($sestControl);
+            }
         }
     }
 }
 
 $(function() {
     var loadedPrefs = localStorage.getItem('sest-prefs');
-    if (loadedPrefs === null) {
-        loadedPrefs = outputSeStPrefs();
-    } else {
-        refreshSeStPrefs();
+    if (loadedPrefs !== null) {
+        applySeStPrefs(loadedPrefs);
     }
-    applySeStPrefs(loadedPrefs);
 
     $(".sest-toggle").click(function() {
         $(".selfstyle").slideDown();
