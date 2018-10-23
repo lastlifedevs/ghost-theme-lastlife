@@ -52,7 +52,9 @@ function updateJsColor(jsColorElem) {
 
     switch (prop) {
         case 'color':
+        case 'background':
             value = jsColorElem.toHEXString();
+            $elem.data('val', value);
             break;
         case 'grad-background':
             prop = prop.substring(GRADIENT_PREFIX.length);
@@ -136,7 +138,7 @@ function refreshSeStPrefs() {
     }
     let $jscolorElems = $sestForm.find('input.jscolor');
     for(let i = 0; i < $jscolorElems.length; i++) {
-        updateJsColor($($jscolorElems[i]));
+        updateJsColor($jscolorElems[i].jscolor);
     }
 }
 
@@ -148,21 +150,28 @@ function applySeStPrefs(prefs) {
         if (pref[0].startsWith(FIELD_GROUP_PREFIX)) {
             // Remove the field group prefix.
             pref[0] = pref[0].substring(FIELD_GROUP_PREFIX.length, pref[0].length);
+            let $sestControl = $("input[data-sel='" + pref[0] + "'][data-prop='" + pref[1] + "']");
             switch (pref[1]) {
                 case 'grad-background':
                     pref[1] = pref[1].substring(GRADIENT_PREFIX.length);
                     $(pref[0]).css(pref[1], 'linear-gradient(' + pref[2] + ')');
+                    let fgVals = pref[2].split(',');
+                    for (let j=0; j < fgVals.length; j++) {
+                        let val = fgVals[j].substring(1);
+                        $sestControl[j]
+                    }
                     break;
                 default:
                     break;
             }
         } else {
             let $sestControl = $("input[data-sel='" + pref[0] + "'][data-prop='" + pref[1] + "']");
-            $sestControl.val(pref[2]);
             if ($sestControl.attr('type') === 'range') {
+                $sestControl.val(pref[2]);
                 updateRange($sestControl);
             } else if ($sestControl.hasClass('jscolor')) {
-                updateJsColor($sestControl);
+                $sestControl[0].jscolor.fromString(pref[2]);
+                updateJsColor($sestControl[0].jscolor);
             }
         }
     }

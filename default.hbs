@@ -39,18 +39,18 @@
                     </div>
                     <div class="sest-form-row">
                         <label for="bg-article">Article background: </label>
-                        <input class="jscolor sest-field" id="bg-article" value="222942">
+                        <input class="sest-field jscolor {onFineChange:'updateJsColor(this)'}" id="bg-article" data-sel=".post-full-content" data-prop="background" value="222942">
                     </div>
                     <span>RPG Box Background Gradient</span>
                     <div class="sest-form-row">
                         <div class="sest-field-group">
                             <div class="sest-form-row">
                                 <label for="bg-grad-start">Color Start: </label>
-                                <input id="bg-grad-start" data-sel=".rpg-box" data-fg="1" data-prop="grad-background" data-grad-stop="0" class="jscolor {onFineChange:'updateJsColor(this)'}" value="222942">
+                                <input id="bg-grad-start" data-sel=".rpg-box" data-fg="1" data-prop="grad-background" class="jscolor {onFineChange:'updateJsColor(this)'}" value="222942">
                             </div>
                             <div class="sest-form-row">
                                 <label for="bg-grad-end">Color End: </label>
-                                <input id="bg-grad-end" data-sel=".rpg-box" data-fg="1" data-prop="grad-background" data-grad-stop="1" class="jscolor {onFineChange:'updateJsColor(this)'}" value="1a1d2f">
+                                <input id="bg-grad-end" data-sel=".rpg-box" data-fg="1" data-prop="grad-background" class="jscolor {onFineChange:'updateJsColor(this)'}" value="1a1d2f">
                             </div>
                         </div>
                     </div>
