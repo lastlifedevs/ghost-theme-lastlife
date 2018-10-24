@@ -158,7 +158,7 @@ function applySeStPrefs(prefs) {
                     let fgVals = pref[2].split(',');
                     for (let j=0; j < fgVals.length; j++) {
                         let val = fgVals[j].substring(1);
-                        $sestControl[j]
+                        $sestControl[j].jscolor.fromString(val);
                     }
                     break;
                 default:
