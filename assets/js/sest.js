@@ -138,6 +138,7 @@ function refreshSeStPrefs() {
     }
     let $jscolorElems = $sestForm.find('input.jscolor');
     for(let i = 0; i < $jscolorElems.length; i++) {
+        $jscolorElems[i].jscolor.fromString($jscolorElems[i].value);
         updateJsColor($jscolorElems[i].jscolor);
     }
 }
@@ -183,12 +184,12 @@ $(function() {
         applySeStPrefs(loadedPrefs);
     }
 
-    $(".sest-toggle").click(function() {
-        $(".selfstyle").slideDown();
+    $("#sest-toggle").click(function() {
+        $("#selfstyle").slideDown();
     });
 
     $("#sest-close-btn").click(function() {
-        $(".selfstyle").slideUp();
+        $("#selfstyle").slideUp();
     });
 
     $(".sest-form-row input[type=range]").on("change mousemove", function() {

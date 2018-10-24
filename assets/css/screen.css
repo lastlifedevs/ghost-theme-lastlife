@@ -2744,7 +2744,7 @@ section.page-description {
 
 /**** SelfStyle ****/
 
-.selfstyle {
+#selfstyle {
     display: none;
     position: fixed;
     bottom: 0;
@@ -2753,7 +2753,7 @@ section.page-description {
     z-index: 100;
 }
 
-.sest-toggle {
+#sest-toggle {
     font-size: 3.5rem;
     color: #ccc;
     position: fixed;
@@ -2765,7 +2765,7 @@ section.page-description {
     border-radius: 10%;
 }
 
-.sest-toggle:hover {
+#sest-toggle:hover {
     color: #777;
     cursor: pointer;
 }
@@ -2783,38 +2783,47 @@ section.page-description {
     outline: 0;
 }
 
-.sest-body {
+#selfstyle .sest-body {
     background: #202337;
     border-radius: 5px;
     color: var(--bright-text);
     padding: 1rem;
 }
 
-.sest-header {
+#selfstyle .sest-header {
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.sest-form-row {
+#selfstyle .sest-form-row {
     display: flex;
     padding: 0.5rem 0;
 }
 
-.sest-field-group > .sest-form-row {
+#selfstyle .sest-field-group > .sest-form-row {
     padding: 0;
     justify-content: flex-end;
 }
 
-.sest-form-row label {
+#selfstyle .sest-form-row label {
     margin-right: 1rem;
 }
 
-.selfstyle button {
-    color: #000;
-}
-
-.selfstyle .jscolor {
+#selfstyle .jscolor {
     width: 9rem;
     border-color: #a3a3a3;
     text-align: center;
+}
+
+#sest-form > .sest-form-row:first-child {
+    border-top: 1px #646464 solid;
+}
+
+#sest-form > .sest-form-row {
+    border-bottom: 1px #646464 solid;
+}
+
+#sest-form > button {
+    color: #000;
+    margin-top: 1rem;
 }
