@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'll-social-icons';
+  src:  url('ll-social-icons.eot?v8i1ii');
+  src:  url('ll-social-icons.eot?v8i1ii#iefix') format('embedded-opentype'),
+    url('ll-social-icons.ttf?v8i1ii') format('truetype'),
+    url('ll-social-icons.woff?v8i1ii') format('woff'),
+    url('ll-social-icons.svg?v8i1ii#ll-social-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ll-social-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'll-social-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-reddit:before {
+  content: "\e904";
+}
+.icon-discord:before {
+  content: "\e900";
+}
+.icon-facebook:before {
+  content: "\e905";
+}
+.icon-instagram:before {
+  content: "\e906";
+}
+.icon-patreon:before {
+  content: "\e901";
+}
+.icon-steam:before {
+  content: "\e902";
+}
+.icon-twitter:before {
+  content: "\e907";
+}
+.icon-youtube:before {
+  content: "\e903";
+}
+.icon-twitch:before {
+  content: "\ea9f";
+}
+.icon-github:before {
+  content: "\eab0";
+}
+.icon-tumblr:before {
+  content: "\eaba";
+}
