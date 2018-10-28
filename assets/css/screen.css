@@ -748,10 +748,9 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .author-profile-image {
     margin-right: 5px;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
-
     object-fit: cover;
 }
 
@@ -810,9 +809,8 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: block;
     overflow: hidden;
     margin: 0 -5px;
-    width: 34px;
-    height: 34px;
-    border: #fff 2px solid;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
 }
 
@@ -822,7 +820,6 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     margin: 0 -6px;
     width: 56px;
     height: 56px;
-    border: #fff 2px solid;
     border-radius: 100%;
     transition: all 0.5s cubic-bezier(0.4, 0.01, 0.165, 0.99) 0.7s;
 }
