@@ -47,23 +47,6 @@ into the {body} of the default.hbs template --}}
 {{#contentFor "scripts"}}
 <script>
 $(document).ready((function() {
-    var currentIcon = null;
-    $(".profile-icon").hover(function(){
-        currentIcon = $(this);
-        if ((currentIcon.offset().top - $(window).scrollTop()) > window.innerHeight / 2) {
-            $("#profiles-container").addClass("profiles-container-top");
-            $("#profiles-container").removeClass("profiles-container-bottom");
-        } else {
-            $("#profiles-container").addClass("profiles-container-bottom");
-            $("#profiles-container").removeClass("profiles-container-top");
-        }
-        $(".creator-profile").stop().hide();
-        var selector = $.escapeSelector($(this).data("prof-id"));
-        $("#profile-"+selector).fadeIn();
-    }, function() {
-        var selector = $.escapeSelector($(this).data("prof-id"));
-        $(".creator-profile").hide();
-    });
 }));
 </script>
 {{/contentFor}}
