@@ -85,6 +85,12 @@ body {
     padding: 0 4vw;
 }
 
+@media (max-width: 500px) {
+    .outer {
+        padding: 0 1rem;
+    }
+}
+
 /* Centered content container blocks */
 .inner {
     margin: 0 auto;
@@ -1384,7 +1390,7 @@ Usage (In Ghost editor):
         height: 350px;
     }
     .post-full-content {
-        padding: 0;
+        padding: 2rem;
     }
     .post-full-content:before,
     .post-full-content:after {
