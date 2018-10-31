@@ -14,28 +14,30 @@ into the {body} of the default.hbs template --}}
             <h1 class="post-full-title">Creators</h1>
         </header>
 
-        <section class="page-description">
-            Here, you'll find Last Life's hard-working team of content creators. Click on an icon to view that creator's profile.
-        </section>
-        
-        {{#get "users" limit="all" order="created_at asc"}}
-        <div class="icons-container">
-            {{#foreach users}}
-            <figure class="user-figure">
-                <a href={{url}}><img class="profile-icon" src="{{img_url profile_image}}" data-prof-id="{{id}}"></a>
-                <figcaption class="user-caption lg-hidden">{{name}}</figcaption>
-            </figure>
-            {{/foreach}}
-        </div>
-        <div id="profiles-container" class="profiles-container-bottom hidden-md">
-            {{#foreach users}}
-            <div id="profile-{{id}}" class="creator-profile">
-                <span class="rpg-box text-emphasis creator-name">{{name}}</span>
-                <div class="rpg-box text-emphasis creator-bio">{{bio}}</div>
+        <div class="page-content">
+            <section class="page-description">
+                <p>Here, you'll find Last Life's hard-working team of content creators. Click on an icon to view that creator's profile.</p>
+            </section>
+            
+            {{#get "users" limit="all" order="created_at asc"}}
+            <div class="icons-container">
+                {{#foreach users}}
+                <figure class="user-figure">
+                    <a href={{url}}><img class="profile-icon" src="{{img_url profile_image}}" data-prof-id="{{id}}"></a>
+                    <figcaption class="user-caption lg-hidden">{{name}}</figcaption>
+                </figure>
+                {{/foreach}}
             </div>
-            {{/foreach}}
+            <div id="profiles-container" class="profiles-container-bottom hidden-md">
+                {{#foreach users}}
+                <div id="profile-{{id}}" class="creator-profile">
+                    <span class="rpg-box text-emphasis creator-name">{{name}}</span>
+                    <div class="rpg-box text-emphasis creator-bio">{{bio}}</div>
+                </div>
+                {{/foreach}}
+            </div>
+            {{/get}}
         </div>
-        {{/get}}
 
     </div>
 </main>

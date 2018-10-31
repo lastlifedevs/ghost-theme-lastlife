@@ -64,6 +64,10 @@ body {
     }
 }
 
+a {
+    color: #bfcde0;
+}
+
 
 /* 2. Layout - Page building blocks
 /* ---------------------------------------------------------- */
@@ -112,6 +116,27 @@ body {
 /* 3. Special Template Styles
 /* ---------------------------------------------------------- */
 
+/* All Pages */
+.page-content p {
+    line-height: 1.5;
+}
+
+/* About Page */
+.social-media-links {
+    display: flex;
+    margin: 0 5rem 1rem;
+    justify-content: space-around;
+    font-size: 4rem;
+}
+
+.social-media-links a, {
+    text-shadow: #000 1px 1px 6px;
+    text-decoration: none;
+}
+
+.social-media-links a:hover {
+    text-decoration: none;
+}
 
 /* 4. Site Header
 /* ---------------------------------------------------------- */
