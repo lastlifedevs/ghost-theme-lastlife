@@ -117,6 +117,11 @@ a {
 /* ---------------------------------------------------------- */
 
 /* All Pages */
+.page-content {
+    background: #1a1d2f;
+    padding-bottom: 1rem;
+}
+
 .page-content p {
     line-height: 1.5;
 }
