@@ -4,14 +4,15 @@ into the {body} of the default.hbs template --}}
 
 {{> "header"}}
 
-{{!-- Everything inside the #post tags pulls data from the post --}}
-{{#post}}
-
 <main id="site-main" class="site-main outer" role="main">
-    Posts
-</main>
+    
+    {{#get "posts"}}
+        {{#foreach posts}}
+            {{title}}
+        {{/foreach}}
+    {{/get}}
 
-{{/post}}
+</main>
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
