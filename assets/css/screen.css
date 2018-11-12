@@ -134,13 +134,45 @@ a {
     font-size: 4rem;
 }
 
-.social-media-links a, {
+.social-media-links a i {
     text-shadow: #000 1px 1px 6px;
     text-decoration: none;
 }
 
 .social-media-links a:hover {
     text-decoration: none;
+}
+
+.social-media-links .twitter:hover,
+.social-media-links .twitter:active,
+.social-media-links .twitter:focus {
+  color: #1da1f2;
+}
+.social-media-links .discord:hover,
+.social-media-links .discord:active,
+.social-media-links .discord:focus {
+  color: #7289da;
+}
+.social-media-links .twitch:hover,
+.social-media-links .twitch:active,
+.social-media-links .twitch:focus {
+  color: #6441a4;
+}
+.social-media-links .youtube:hover,
+.social-media-links .youtube:active,
+.social-media-links .youtube:focus {
+  color: #ff0000;
+}
+.social-media-links .steam:hover,
+.social-media-links .steam:active,
+.social-media-links .steam:focus {
+  color: #000;
+}
+.social-media-links a:active {
+  text-shadow: none;
+  left: 1px;
+  top: 1px;
+  position: relative;
 }
 
 /* 4. Site Header
