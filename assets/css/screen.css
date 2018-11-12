@@ -2819,6 +2819,7 @@ section.page-description {
 }
 
 #sest-toggle {
+    display: none;
     font-size: 3.5rem;
     color: #ccc;
     position: fixed;

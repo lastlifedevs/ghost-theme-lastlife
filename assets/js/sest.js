@@ -184,6 +184,8 @@ $(function() {
         applySeStPrefs(loadedPrefs);
     }
 
+    $("#sest-toggle").css('display','block');
+
     $("#sest-toggle").click(function() {
         $("#selfstyle").slideDown();
     });
