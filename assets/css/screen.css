@@ -827,6 +827,27 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     position: relative;
 }
 
+.post-card-mini .post-card-image {
+    height: 100%;
+    width: 100%;
+}
+
+.post-card-mini a.post-card-image-link {
+    width: 140px;
+    height: auto;
+    display: inline-block;
+}
+
+.post-card-mini {
+    display: inline-flex;
+    width: 45%;
+    margin: 1rem;
+}
+
+.post-card-mini .post-card-content-link {
+    display: inline-block;
+}
+
 .author-list {
     display: flex;
     flex-wrap: wrap-reverse;

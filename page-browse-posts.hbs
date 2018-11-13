@@ -8,8 +8,9 @@ into the {body} of the default.hbs template --}}
     
     {{#get "posts"}}
         {{#foreach posts}}
-            {{title}}
+            {{> "post-card-mini"}}
         {{/foreach}}
+        {{pagination}}
     {{/get}}
 
 </main>
