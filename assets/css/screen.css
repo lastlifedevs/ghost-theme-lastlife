@@ -120,6 +120,8 @@ a {
 .page-content {
     background: #1a1d2f;
     padding-bottom: 1rem;
+    box-shadow: inset #232940 0px 0px 9px 4px;
+    border-radius: 5px;
 }
 
 .page-content p {
@@ -130,7 +132,7 @@ a {
 .social-media-links {
     display: flex;
     margin: 0 5rem 1rem;
-    justify-content: space-around;
+    justify-content: space-between;
     font-size: 4rem;
 }
 
@@ -173,6 +175,170 @@ a {
   left: 1px;
   top: 1px;
   position: relative;
+}
+
+/** Custom Pages **/
+
+.page-template .site-main {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.page-template .inner {
+    max-width: 900px;
+}
+
+.page-description {
+    padding: 2rem;
+    font-family: Open Sans;
+    font-size: 2.5rem;
+    line-height: 2em;
+    color: #ccc;
+}
+
+.page-footer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 1rem 0;
+}
+
+.icon-footer {
+    height: 100px;
+    width: 100px;
+    background-image: url(/assets/img/icon-eighthres.png);
+    background-size: cover;
+    opacity: 0.8;
+}
+
+/** Creators Page **/
+
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.user-figure {
+    text-align: center;
+    padding: 1rem;
+}
+
+@media (max-width: 679px) {
+    .user-figure {
+        padding: 1.25rem 0 1.25rem;
+        width: 50%;
+    }
+}
+
+.user-caption {
+    font-size: 3.5rem;
+    line-height: 1;
+    color: #ccc;
+    font-family: Open Sans Condensed;
+    text-shadow: 2px 2px #000;
+    word-wrap: break-word;
+}
+
+@media(min-width:680px) {
+    .profile-icon {
+        opacity: 0.4;
+        transition: opacity 0.25s;
+    }
+    .profile-icon:hover {
+        opacity: 1;
+    }
+}
+
+.profile-icon {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+#profiles-container {
+    position: fixed;
+    z-index: 100;
+    left: 5%;
+    width: 90%;
+}
+
+@media(min-width: 1190px) {
+    #profiles-container {
+        left: 25%;
+        width: 50%;
+    }
+}
+
+.creator-name {
+    line-height: 1;
+}
+
+.profiles-container-bottom {
+    bottom: 13rem;
+    top: auto;
+}
+
+.profiles-container-top {
+    bottom: auto;
+    top: 20rem;
+}
+
+.creator-profile {
+    padding: 1rem;
+}
+
+@media(max-height: 799px) {
+    .profiles-container-bottom {
+        bottom: 1rem;
+    }
+    .profiles-container-top {
+        top: 5rem;
+    }
+}
+
+@media(max-height: 730px) {
+    #profiles-container {
+        display: none;
+    }
+}
+
+.creator-profile {
+    display: none;
+    color: #ddd;
+}
+
+.creator-name {
+    font-size: 7rem;
+    font-family: Open Sans Condensed;
+    padding-left: 1.8rem;
+    padding-right: 2rem;
+    margin-left: 2.25rem;
+    border-radius: 5px;
+    border: 2px ridge #a3a3a3;
+    display: inline-flex;
+    line-height: 1.2;
+    padding-bottom: 1.25rem;
+    margin-bottom: -1rem;
+}
+
+.creator-bio {
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.5;
+}
+
+.rpg-box {
+    background: linear-gradient(180deg, #222942 0, #1a1d2f);
+    border: 2px ridge #a3a3a3;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px 0 #080812;
+}
+
+.rpg-box.text-emphasis {
+    text-shadow: 2px 2px #000;
 }
 
 /* 4. Site Header
@@ -2676,6 +2842,12 @@ Usage (In Ghost editor):
     display: none;
 }
 
+@media (max-width: 1170px) and (min-width: 651px) {  
+    .copyright {
+        margin-left: 5rem;
+    }
+}
+
 @media (max-width: 650px) {
     .site-footer-content {
         flex-direction: column;
@@ -2683,148 +2855,6 @@ Usage (In Ghost editor):
     .site-footer-nav a:first-child {
         margin-left: 0;
     }
-}
-
-
-/** Custom Pages **/
-
-section.page-description {
-    padding: 2rem;
-    margin-bottom: 2rem;
-    font-family: Open Sans;
-    font-size: 2.5rem;
-    line-height: 2em;
-    color: #ccc;
-}
-
-
-/** Creators Page **/
-
-.icons-container {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    flex-wrap: wrap;
-}
-
-.user-figure {
-    text-align: center;
-    padding: 1rem;
-}
-
-@media (max-width: 679px) {
-    .user-figure {
-        padding: 1.25rem 0 1.25rem;
-        width: 50%;
-    }
-}
-
-.user-caption {
-    font-size: 3.5rem;
-    line-height: 1;
-    color: #ccc;
-    font-family: Open Sans Condensed;
-    text-shadow: 2px 2px #000;
-    word-wrap: break-word;
-}
-
-@media(min-width:680px) {
-    .profile-icon {
-        opacity: 0.4;
-        transition: opacity 0.25s;
-    }
-    .profile-icon:hover {
-        opacity: 1;
-    }
-}
-
-.profile-icon {
-    max-width: 100px;
-    max-height: 100px;
-}
-
-#profiles-container {
-    position: fixed;
-    z-index: 100;
-    left: 5%;
-    width: 90%;
-}
-
-@media(min-width: 1190px) {
-    #profiles-container {
-        left: 25%;
-        width: 50%;
-    }
-}
-
-.creator-name {
-    line-height: 1;
-}
-
-.profiles-container-bottom {
-    bottom: 13rem;
-    top: auto;
-}
-
-.profiles-container-top {
-    bottom: auto;
-    top: 20rem;
-}
-
-.creator-profile {
-    padding: 1rem;
-}
-
-@media(max-height: 799px) {
-    .profiles-container-bottom {
-        bottom: 1rem;
-    }
-    .profiles-container-top {
-        top: 5rem;
-    }
-}
-
-@media(max-height: 730px) {
-    #profiles-container {
-        display: none;
-    }
-}
-
-.creator-profile {
-    display: none;
-    color: #ddd;
-}
-
-.creator-name {
-    font-size: 7rem;
-    font-family: Open Sans Condensed;
-    padding-left: 1.8rem;
-    padding-right: 2rem;
-    margin-left: 2.25rem;
-    border-radius: 5px;
-    border: 2px ridge #a3a3a3;
-    display: inline-flex;
-    line-height: 1.2;
-    padding-bottom: 1.25rem;
-    margin-bottom: -1rem;
-}
-
-.creator-bio {
-    font-size: 2.5rem;
-    text-align: center;
-    padding: 1rem;
-    line-height: 1.5;
-}
-
-.rpg-box {
-    background: linear-gradient(180deg, #222942 0, #1a1d2f);
-    border: 2px ridge #a3a3a3;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px 0 #080812;
-}
-
-.rpg-box.text-emphasis {
-    text-shadow: 2px 2px #000;
 }
 
 
