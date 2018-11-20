@@ -179,7 +179,8 @@ a {
 
 /** Custom Pages **/
 
-.page-template .site-main {
+/** About page centering */
+.page-template.page-about .site-main {
     display: flex;
     align-items: center;
     padding: 0;
@@ -195,6 +196,10 @@ a {
     font-size: 2.5rem;
     line-height: 2em;
     color: #ccc;
+}
+
+.page-content p:last-child {
+    margin: 0;
 }
 
 .page-footer {
@@ -264,25 +269,29 @@ a {
     width: 90%;
 }
 
-@media(min-width: 1190px) {
+@media (min-width: 1190px) and (max-width: 1499px) {   
+    #profiles-container {
+        left: 15%;
+        width: 70%;
+    }
+}
+
+@media (min-width: 1500px) and (max-width: 1899px) {
     #profiles-container {
         left: 25%;
         width: 50%;
     }
 }
 
+@media (min-width: 1900px) {
+    #profiles-container {
+        left: 30%;
+        width: 40%;
+    }
+}
+
 .creator-name {
     line-height: 1;
-}
-
-.profiles-container-bottom {
-    bottom: 13rem;
-    top: auto;
-}
-
-.profiles-container-top {
-    bottom: auto;
-    top: 20rem;
 }
 
 .creator-profile {
