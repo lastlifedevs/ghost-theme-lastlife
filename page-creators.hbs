@@ -16,7 +16,7 @@ into the {body} of the default.hbs template --}}
 
         <div class="page-content">
             <section class="page-description">
-                <p>Here, you'll find Last Life's hard-working team of content creators. Click on an icon to view that creator's profile.</p>
+                <p>Here, you'll find Last Life's team of content creators. Click on an icon to view that creator's profile.</p>
             </section>
         </div>
 
@@ -46,25 +46,5 @@ into the {body} of the default.hbs template --}}
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
-<script>
-$(document).ready((function() {
-    $(".profile-icon").hover(function(){
-        let currentIcon = $(this);
-        let profContainer = $("#profiles-container");
-        let selectedProfile = $("#profile-"+$.escapeSelector($(this).data("prof-id")));
-        selectedProfile.show();
-        let profContainerHeight = profContainer.outerHeight();
-        selectedProfile.hide();
-        let profileLoc = (currentIcon.offset().top - $(window).scrollTop()) + currentIcon.outerHeight();
-        if (profileLoc + profContainerHeight + 100 > $(document).outerHeight()) {
-            profileLoc -= (currentIcon.outerHeight() + profContainerHeight);
-        }
-        profContainer.css("top", profileLoc + "px");
-        $(".creator-profile").stop().hide();
-        selectedProfile.fadeIn();
-    }, function() {
-        $(".creator-profile").hide();
-    });
-}));
-</script>
+<script type="text/javascript" src="{{asset 'js/creators.js'}}"></script>
 {{/contentFor}}
