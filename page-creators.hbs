@@ -51,8 +51,7 @@ $(document).ready((function() {
     $(".profile-icon").hover(function(){
         let currentIcon = $(this);
         let profContainer = $("#profiles-container");
-        let selector = $.escapeSelector($(this).data("prof-id"));
-        let selectedProfile = $("#profile-"+selector);
+        let selectedProfile = $("#profile-"+$.escapeSelector($(this).data("prof-id")));
         selectedProfile.show();
         let profContainerHeight = profContainer.outerHeight();
         selectedProfile.hide();
@@ -64,7 +63,6 @@ $(document).ready((function() {
         $(".creator-profile").stop().hide();
         selectedProfile.fadeIn();
     }, function() {
-        var selector = $.escapeSelector($(this).data("prof-id"));
         $(".creator-profile").hide();
     });
 }));
