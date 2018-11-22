@@ -5,21 +5,22 @@ into the {body} of the default.hbs template --}}
 {{> "header"}}
 
 <main id="site-main" class="site-main outer" role="main">
-    
-    {{#get "posts"}}
-        {{#foreach posts}}
-            {{> "post-card-mini"}}
-        {{/foreach}}
-        {{pagination}}
-    {{/get}}
+
+    <form>
+        <input id="search-field" />
+        <input type="submit" value="search">
+    </form>
+
+    <section id="results"></section>
 
 </main>
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
+<script type="text/javascript" src="{{asset "ghostHunter/dist/jquery.ghosthunter.js"}}"></script>
 <script>
-$(document).ready((function() {
-
-}));
+    $("#search-field").ghostHunter({
+      results: "#results"
+    });
 </script>
 {{/contentFor}}
