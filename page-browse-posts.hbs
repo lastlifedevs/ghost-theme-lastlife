@@ -19,6 +19,7 @@ into the {body} of the default.hbs template --}}
 {{#contentFor "scripts"}}
 <script type="text/javascript" src="{{asset "ghostHunter/dist/jquery.ghosthunter.js"}}"></script>
 <script>
+    $("#postsLink").attr('href','/browse-posts');
     $("#search-field").ghostHunter({
       results: "#results"
     });

@@ -25,7 +25,7 @@ into the {body} of the default.hbs template --}}
             {{#foreach users}}
             <figure class="user-figure">
                 <a href={{url}}><img class="profile-icon" src="{{img_url profile_image}}" data-prof-id="{{id}}"></a>
-                <figcaption class="user-caption lg-hidden">{{name}}</figcaption>
+                <figcaption class="user-caption"><span class="lg-hidden">{{name}}</span><noscript>{{name}}</noscript></figcaption>
             </figure>
             {{/foreach}}
         </div>

@@ -5,31 +5,25 @@ into the {body} of the default.hbs template --}}
 {{> "header"}}
 
 <main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <h1 class="post-full-title">Browse Posts</h1>
+        </header>
 
-    <header class="post-full-header">
-        <h1 class="post-full-title">Browse Posts</h1>
-    </header>
+        <div class="page-content">
+            <section class="page-description">
+                <p>Browse the full archive of posts on Last Life.</p>
+            </section>
+        </div>
 
-    <div class="page-content">
-        <section class="page-description">
-            <p>Browse the full archive of posts on Last Life.</p>
-        </section>
-    </div>
-
-    <div class="wrap-collabsible">
-        <input id="collapsible" class="toggle" type="checkbox">
-        <label for="collapsible" class="lbl-toggle">Browse by Game</label>
-        <div class="collapsible-content">
+        <div class="row">
             <div class="content-inner">
-                {{#get "tags" limit="all" order="desc" filter=}}            
-                    {{#foreach tags}}
-                        <li>
-                            <a href="{{url}}">{{name}}</a>
-                        </li>
+                {{#get "posts" limit="all" order="desc"}}            
+                    {{#foreach posts}}
+                        {{> "post-card-mini"}}
                     {{/foreach}}
                 {{/get}}
             </div>
         </div>
     </div>
-
 </main>

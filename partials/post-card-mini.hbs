@@ -1,22 +1,22 @@
 <article class="post-card-mini rpg-box {{post_class}}{{#unless feature_image}} no-image{{/unless}}">
     {{#if feature_image}}
-        <a class="post-card-image-link" href="{{url}}">
-            <div class="post-card-image" style="background-image: url({{feature_image}})"></div>
-        </a>
+    <a class="post-card-image-link" href="{{url}}">
+        <div class="post-card-image" style="background-image: url({{feature_image}})"></div>
+    </a>
     {{/if}}
     <div class="post-card-content">
         <a class="post-card-content-link" href="{{url}}">
             <header class="post-card-header">
                 {{#if primary_tag}}
-                    <span class="post-card-tags">{{primary_tag.name}}</span>
+                <span class="post-card-tags">{{primary_tag.name}}</span>
                 {{/if}}
                 <h2 class="post-card-title">{{title}}</h2>
             </header>
         </a>
         <footer class="post-card-meta">
-
+            {{date}}
             <ul class="author-list">
-            {{#foreach authors}}
+                {{#foreach authors}}
                 <li class="author-list-item">
 
                     <div class="author-name-tooltip">
@@ -24,12 +24,13 @@
                     </div>
 
                     {{#if profile_image}}
-                        <a href="{{url}}" class="static-avatar"><img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" /></a>
+                    <a href="{{url}}" class="static-avatar"><img class="author-profile-image" src="{{profile_image}}"
+                            alt="{{name}}" /></a>
                     {{else}}
-                        <a href="{{url}}" class="static-avatar author-profile-image">{{> "icons/avatar"}}</a>
+                    <a href="{{url}}" class="static-avatar author-profile-image">{{> "icons/avatar"}}</a>
                     {{/if}}
                 </li>
-            {{/foreach}}
+                {{/foreach}}
             </ul>
 
         </footer>
