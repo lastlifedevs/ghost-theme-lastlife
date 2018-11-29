@@ -16,7 +16,8 @@
         <footer class="post-card-meta">
             {{date}}
             <ul class="author-list">
-                {{#foreach authors}}
+                {{#post}}
+                {{#primary_author}}
                 <li class="author-list-item">
 
                     <div class="author-name-tooltip">
@@ -30,7 +31,8 @@
                     <a href="{{url}}" class="static-avatar author-profile-image">{{> "icons/avatar"}}</a>
                     {{/if}}
                 </li>
-                {{/foreach}}
+                {{/primary_author}}
+                {{/post}}
             </ul>
 
         </footer>

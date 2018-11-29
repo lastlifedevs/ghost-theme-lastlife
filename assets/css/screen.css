@@ -1002,25 +1002,36 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     position: relative;
 }
 
+.post-card-mini {
+    display: inline-flex;
+    width: calc(50% - 9px);
+    height: 85px;
+    margin: 10px 5px 10px 0;
+}
+
+.post-card-mini:nth-child(2n) {
+    margin: 0 0 10px 5px;
+}
+
 .post-card-mini .post-card-image {
     height: 100%;
     width: 100%;
 }
 
 .post-card-mini a.post-card-image-link {
-    width: 140px;
+    min-width: 140px;
+    border-radius: 5px 0 0 5px;
     height: auto;
     display: inline-block;
 }
 
-.post-card-mini {
-    display: inline-flex;
-    width: 45%;
-    margin: 1rem;
-}
-
 .post-card-mini .post-card-content-link {
     display: inline-block;
+    padding: 1rem 0 0 2rem;
+}
+
+.post-card-mini .post-card-meta {
+    padding: 0 0 1rem 2rem;
 }
 
 .author-list {
