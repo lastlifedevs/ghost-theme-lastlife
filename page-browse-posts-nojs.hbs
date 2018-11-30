@@ -16,14 +16,12 @@ into the {body} of the default.hbs template --}}
             </section>
         </div>
 
-        <div class="row">
-            <div class="content-inner">
-                {{#get "posts" limit="all" order="desc"}}            
-                    {{#foreach posts}}
-                        {{> "post-card-mini"}}
-                    {{/foreach}}
-                {{/get}}
-            </div>
+        <div class="posts-list">
+            {{#get "posts" limit="all" order="desc"}}            
+                {{#foreach posts}}
+                    {{> "post-card-mini"}}
+                {{/foreach}}
+            {{/get}}
         </div>
     </div>
 </main>
