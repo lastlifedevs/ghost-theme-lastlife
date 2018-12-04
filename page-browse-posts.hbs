@@ -1,27 +1,26 @@
 {{!< default}}
 {{!-- The tag above means: insert everything in this file
 into the {body} of the default.hbs template --}}
-
-{{> "header"}}
-
+{{> "header"}} 
 <main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <form>
+            <input id="search-field" />
+            <input type="submit" value="search">
+        </form>
 
-    <form>
-        <input id="search-field" />
-        <input type="submit" value="search">
-    </form>
-
-    <section id="results" class="search-results"></section>
-
+        <section id="results" class="posts-list"></section>
+    </div>
 </main>
 
-{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in
+default.hbs --}}
 {{#contentFor "scripts"}}
 <script type="text/javascript" src="{{asset "ghostHunter/dist/jquery.ghosthunter.js"}}"></script>
 <script>
-    $("#postsLink").attr('href','/browse-posts');
+    $("#postsLink").attr('href', '/browse-posts');
     $("#search-field").ghostHunter({
-      results: "#results"
+        results: "#results"
     });
 </script>
 {{/contentFor}}
