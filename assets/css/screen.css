@@ -1022,7 +1022,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     position: relative;
 }
 
-.post-card-title {
+.post-card-mini .post-card-title {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
