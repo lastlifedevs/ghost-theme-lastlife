@@ -5,7 +5,7 @@
     </a>
     {{/if}}
     <div class="post-card-content">
-        <a class="post-card-content-link" href="{{url}}">
+        <a class="post-card-content-link" href="{{url}}" title="{{title}}">
             <header class="post-card-header">
                 {{#if primary_tag}}
                 <span class="post-card-tags">{{primary_tag.name}}</span>
@@ -16,8 +16,7 @@
         <footer class="post-card-meta">
             {{date}}
             <ul class="author-list">
-                {{#post}}
-                {{#primary_author}}
+            {{#foreach authors}}
                 <li class="author-list-item">
 
                     <div class="author-name-tooltip">
@@ -31,8 +30,7 @@
                     <a href="{{url}}" class="static-avatar author-profile-image">{{> "icons/avatar"}}</a>
                     {{/if}}
                 </li>
-                {{/primary_author}}
-                {{/post}}
+            {{/foreach}}
             </ul>
 
         </footer>

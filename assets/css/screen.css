@@ -35,6 +35,7 @@ body {
     background-image: url(/assets/img/bg.png);
     background-attachment: fixed;
     overflow-x: unset;
+    color: #ccc;
 }
 
 .img {
@@ -1021,11 +1022,23 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     position: relative;
 }
 
+.post-card-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
 .post-card-mini {
     display: inline-flex;
     width: calc(50% - 9px);
     height: 85px;
     margin: 5px 5px 5px 0;
+}
+
+.post-card-mini .post-card-content {
+    min-width: 0;
 }
 
 .post-card-mini:nth-child(2n) {
@@ -1046,16 +1059,50 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .post-card-mini .post-card-content-link {
     display: inline-block;
-    padding: 1rem 0 0 2rem;
+    padding: 0.75rem 0 0 2rem;
 }
 
 .post-card-mini .post-card-meta {
     padding: 0 0 1rem 2rem;
 }
 
+@media(max-width:869px) {
+    .post-card-mini {
+        flex-direction: column;
+        overflow: hidden;
+        min-height: 220px;
+        width: calc(33% - 9px);
+        margin: 5px;
+    }
+    .post-card-mini:nth-child(2n) {
+        margin: 5px;
+    }
+    .post-card-mini:nth-child(3n) {
+        margin: 5px 0 5px 5px;
+    }
+    .post-card-mini a.post-card-image-link {
+        display: block;
+        position: relative;
+    }
+    .post-card-mini .post-card-image {
+        display: block;
+        height: 92px;
+        width: auto;
+    }
+    .post-card-title {
+        height: 5.75rem;
+        white-space: normal;
+        font-size: 1.75rem;
+    }
+    .post-card-mini .post-card-content-link {
+        padding: 0.75rem 1rem 0 1rem;
+    }
+}
+
 .posts-list {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 1rem;
 }
 
 .author-list {

@@ -48,13 +48,25 @@ function updateJsColor(jsColorElem) {
     var $elem = $(jsColorElem.valueElement);
     var prop = $elem.data('prop');
     var value = '';
-    let assign = true;
+    let complementaryProp = '';
+    let complementaryPropVal = '';
 
     switch (prop) {
         case 'color':
         case 'background':
             value = jsColorElem.toHEXString();
             $elem.data('val', value);
+            complementaryProp = 'box-shadow';
+            let hsl = rgbToHsl(jsColorElem.rgb[0], jsColorElem.rgb[1], jsColorElem.rgb[2]);
+            hsl[0] = Math.round(hsl[0]).toString();
+            hsl[1] = Math.round(hsl[1]*100).toString() + '%';
+            let lum = Math.round(hsl[2]*100);
+            let lumAdj = lum + lum/2;
+            if (lumAdj > 100) {
+                lumAdj = lum/2;
+            } 
+            hsl[2] = lumAdj.toString() + '%';
+            complementaryPropVal = 'hsl(' + hsl[0] + ',' + hsl[1] + ',' + hsl[2] + ')';
             break;
         case 'grad-background':
             prop = prop.substring(GRADIENT_PREFIX.length);
@@ -77,7 +89,43 @@ function updateJsColor(jsColorElem) {
             break;
     }
 
-    $($elem.data('sel')).css(prop, value);
+    if (complementaryProp) {
+        let $elems = $($elem.data('sel'));
+        switch (complementaryProp) {
+            case 'box-shadow':
+                for (let i = 0; i < $elems.length; i++) {
+                    let currentElem = $elems[i];
+                    $(currentElem).css(prop,value);
+                    let currentComplVal = $(currentElem).css(complementaryProp);
+                    if (currentComplVal) {
+                        $(currentElem).css(complementaryProp, complementaryPropVal + currentComplVal.substring(currentComplVal.indexOf(')') + 1));
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    } else {
+        $($elem.data('sel')).css(prop, value);
+    }
+}
+
+/** RGB to HSL conversion for the computation of certain complementary property values. */
+function rgbToHsl(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    let max = Math.max(r, g, b);
+    let min = Math.min(r, g, b);
+    let d = max - min;
+    let h;
+    if (d === 0) h = 0;
+    else if (max === r) h = (g - b) / d % 6;
+    else if (max === g) h = (b - r) / d + 2;
+    else if (max === b) h = (r - g) / d + 4;
+    let l = (min + max) / 2;
+    let s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
+    return [h * 60, s, l];
 }
 
 /**
@@ -133,11 +181,11 @@ function refreshSeStPrefs() {
     // TODO: Add any other input types.
     let $sestForm = $("#sest-form");
     let $rangeElems = $sestForm.find("input[type=range]");
-    for(let i = 0; i < $rangeElems.length; i++) {
+    for (let i = 0; i < $rangeElems.length; i++) {
         updateRange($($rangeElems[i]));
     }
     let $jscolorElems = $sestForm.find('input.jscolor');
-    for(let i = 0; i < $jscolorElems.length; i++) {
+    for (let i = 0; i < $jscolorElems.length; i++) {
         $jscolorElems[i].jscolor.fromString($jscolorElems[i].value);
         updateJsColor($jscolorElems[i].jscolor);
     }
@@ -157,7 +205,7 @@ function applySeStPrefs(prefs) {
                     pref[1] = pref[1].substring(GRADIENT_PREFIX.length);
                     $(pref[0]).css(pref[1], 'linear-gradient(' + pref[2] + ')');
                     let fgVals = pref[2].split(',');
-                    for (let j=0; j < fgVals.length; j++) {
+                    for (let j = 0; j < fgVals.length; j++) {
                         let val = fgVals[j].substring(1);
                         $sestControl[j].jscolor.fromString(val);
                     }
@@ -184,7 +232,7 @@ $(function() {
         applySeStPrefs(loadedPrefs);
     }
 
-    $("#sest-toggle").css('display','block');
+    $("#sest-toggle").css('display', 'block');
 
     $("#sest-toggle").click(function() {
         $("#selfstyle").slideDown();

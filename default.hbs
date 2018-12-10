@@ -36,7 +36,7 @@
                 <form id="sest-form">
                     <div class="sest-form-row">
                         <label for="text-brightness-range">Text Brightness</label>
-                        <input class="sest-field" id="text-brightness-range" type="range" min="0" max="255" step="1" value="204" data-sel=".post-card-content-link, .post-full-content, .selfstyle, .post-full-content em, .post-full-content strong, .post-full-content h1, .post-full-content h2, .post-full-content h3, .post-full-content h4, .post-full-content h5, .post-full-content h6" data-prop="color">
+                        <input class="sest-field" id="text-brightness-range" type="range" min="0" max="255" step="1" value="204" data-sel=".post-card-content-link, .post-card-meta, .page-description, .post-full-content, .selfstyle, .post-full-content em, .post-full-content strong, .post-full-content h1, .post-full-content h2, .post-full-content h3, .post-full-content h4, .post-full-content h5, .post-full-content h6" data-prop="color">
                     </div>
                     <div class="sest-form-row">
                         <label for="bg-article">Article background: </label>
@@ -103,6 +103,8 @@
 
     {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
     {{{block "scripts"}}}
+    
+	<script type="text/javascript">$("#postsLink").attr('href','/browse-posts');</script>
 
     {{!-- SelfStyle --}}
     <script type="text/javascript" src="{{asset "js/sest.js"}}"></script>
@@ -116,7 +118,6 @@
         if (s.isMobile() || $(window).width() <= 679) {
             s.destroy();
         }
-        $("#postsLink").attr('href','/browse-posts');
         document.body.style.visibility = "visible";
 	</script>
     {{/is}}

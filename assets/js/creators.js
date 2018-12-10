@@ -1,5 +1,4 @@
 $(document).ready((function() {
-    $("#postsLink").attr('href','/browse-posts');
     $(".profile-icon").hover(function(){
         let currentIcon = $(this);
         let profContainer = $("#profiles-container");
