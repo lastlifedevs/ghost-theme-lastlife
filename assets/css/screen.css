@@ -1066,6 +1066,21 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     padding: 0 0 1rem 2rem;
 }
 
+.post-card-mini .author-profile-image {
+    margin: 0;
+    width: 32px;
+    height: 32px;
+}
+
+.post-card-mini .author-list {
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.post-card-mini .post-card-meta {
+    align-items: center;
+}
+
 @media(max-width:869px) {
     .post-card-mini {
         flex-direction: column;
