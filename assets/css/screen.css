@@ -65,10 +65,6 @@ body {
     }
 }
 
-a {
-    color: #bfcde0;
-}
-
 
 /* 2. Layout - Page building blocks
 /* ---------------------------------------------------------- */
@@ -139,53 +135,57 @@ a {
 
 /* About Page */
 
-.social-media-links {
+#links > .social-media-links {
     display: flex;
     margin: 0 5rem 1rem;
     justify-content: space-between;
     font-size: 4rem;
 }
 
-.social-media-links a i {
+#links > .social-media-links a {
+    box-shadow: none;
+}
+
+#links > .social-media-links a i {
     text-shadow: #000 1px 1px 6px;
     text-decoration: none;
 }
 
-.social-media-links a:hover {
+#links > .social-media-links a:hover {
     text-decoration: none;
 }
 
-.social-media-links .twitter:hover,
-.social-media-links .twitter:active,
-.social-media-links .twitter:focus {
+#links > .social-media-links .twitter:hover,
+#links > .social-media-links .twitter:active,
+#links > .social-media-links .twitter:focus {
     color: #1da1f2;
 }
 
-.social-media-links .discord:hover,
-.social-media-links .discord:active,
-.social-media-links .discord:focus {
+#links > .social-media-links .discord:hover,
+#links > .social-media-links .discord:active,
+#links > .social-media-links .discord:focus {
     color: #7289da;
 }
 
-.social-media-links .twitch:hover,
-.social-media-links .twitch:active,
-.social-media-links .twitch:focus {
+#links > .social-media-links .twitch:hover,
+#links > .social-media-links .twitch:active,
+#links > .social-media-links .twitch:focus {
     color: #6441a4;
 }
 
-.social-media-links .youtube:hover,
-.social-media-links .youtube:active,
-.social-media-links .youtube:focus {
+#links > .social-media-links .youtube:hover,
+#links > .social-media-links .youtube:active,
+#links > .social-media-links .youtube:focus {
     color: #ff0000;
 }
 
-.social-media-links .steam:hover,
-.social-media-links .steam:active,
-.social-media-links .steam:focus {
+#links > .social-media-links .steam:hover,
+#links > .social-media-links .steam:active,
+#links > .social-media-links .steam:focus {
     color: #000;
 }
 
-.social-media-links a:active {
+#links > .social-media-links a:active {
     text-shadow: none;
     left: 1px;
     top: 1px;
@@ -1077,6 +1077,11 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     margin-top: 1rem;
 }
 
+.post-card-mini .static-avatar {
+    width: 32px;
+    height: 32px;
+}
+
 .post-card-mini .post-card-meta {
     align-items: center;
 }
@@ -1324,11 +1329,6 @@ The first (most recent) post in the list is styled to be bigger than the others 
     }
 }
 
-.post-template .site-main,
-.page-template .site-main {
-    padding-bottom: 4vw;
-}
-
 .post-full {
     position: relative;
     z-index: 50;
@@ -1411,7 +1411,7 @@ The first (most recent) post in the list is styled to be bigger than the others 
 
 @media (max-width: 1170px) {
     .post-full-content {
-        padding: 5vw 7vw 0;
+        padding: 2vw 3vw 2vw;
     }
 }
 
@@ -1483,13 +1483,15 @@ The first (most recent) post in the list is styled to be bigger than the others 
     margin: 0;
 }
 
-.post-full-content a {
+.post-full-content a,
+.page-content a {
     color: var(--blue);
     box-shadow: var(--blue) 0 -1px 0 inset;
 }
 
-.post-full-content a:hover {
-    color: #4cbdfa;
+.post-full-content a:hover,
+.page-content a:hover {
+    color: color(var(--blue) l(+20%));
     text-decoration: none;
 }
 
@@ -1948,7 +1950,7 @@ Usage (In Ghost editor):
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    padding: 3vw 0 6vw 0;
+    padding: 3vw 0 0;
     max-width: 840px;
 }
 
