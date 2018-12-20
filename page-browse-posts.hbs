@@ -4,12 +4,25 @@ into the {body} of the default.hbs template --}}
 {{> "header"}} 
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
-        <form>
-            <input id="search-field" />
-            <input type="submit" value="search">
-        </form>
+        <div class="page-content">
+            <form>
+                <label for="search-field">
+                    <i class="ll-social-icon icon-search"></i>
+                    <input id="search-field" />
+                </label>
+            </form>
+        </div>
 
-        <section id="results" class="posts-list"></section>
+        <section id="results" class="posts-list">
+            <span id="initialResults">
+                <p>Displaying the most recent 30 posts.</p>
+                {{#get "posts" limit="30" order="desc" include="authors"}}            
+                    {{#foreach posts}}
+                        {{> "post-card-mini"}}
+                    {{/foreach}}
+                {{/get}}
+            </span>
+        </section>
     </div>
 </main>
 

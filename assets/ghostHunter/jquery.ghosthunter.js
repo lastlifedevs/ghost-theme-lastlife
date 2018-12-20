@@ -1736,6 +1736,7 @@ lunr.Index.prototype.search = function (queryString) {
   })
 }
 
+
 /**
  * A query builder callback provides a query object to be used to express
  * the query to perform on the index.
@@ -3159,19 +3160,62 @@ lunr.QueryParser.parseBoost = function (parser) {
 		}
 	};
 
+  var formatResults = function() {
+    let results = $("#results .gh-search-item");
+    for (let i = 0; i < results.length; i++) {
+      let $result = $(results[i]);
+      let link = $result.data('link');
+      let title = $result.data('title');
+      let pubDate = $result.data('pubdate');
+      let featureImage = $result.data('featureimage');
+      let authors = $result.data('authors').split(',');
+      let authorImgs = $result.data('authorimgs').split(',');
+      let authorSlugs = $result.data('authorslugs').split(',');
+      let html = `
+        <a class="post-card-image-link" href="${link}">
+            <div class="post-card-image" style="background-image: url(${featureImage})"></div>
+        </a>
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="${link}" title="${title}">
+                <header class="post-card-header">
+                    <h2 class="post-card-title">${title}</h2>
+                </header>
+            </a>
+            <footer class="post-card-meta">
+                ${pubDate}
+                <ul class="author-list">
+        `;
+      for (let a = 0; a < authors.length; a++) {
+        html += `
+                  <li class="author-list-item">
+                      <div class="author-name-tooltip">${authors[a]}</div>
+                      <a href="/author/${authorSlugs[a]}" class="static-avatar"><img class="author-profile-image" src="${authorImgs[a]}" alt="${authors[a]}" /></a>
+                  </li>
+        `;
+      }
+      html += `
+                </ul>
+    
+            </footer>
+        </div>
+      `;
+      $result[0].innerHTML = html;
+    }
+  };
+
 	// If the Ghost instance is in a subpath of the site, set subpath
 	// as the path to the site with a leading slash and no trailing slash
 	// (i.e. "/path/to/instance").
 	$.fn.ghostHunter.defaults = {
 		resultsData			: false,
-		onPageLoad			: true,
-		onKeyUp				: false,
-		result_template 	: '<article class="post-card-mini rpg-box"><a id="gh-{{ref}}" href="{{link}}"><p><h2>{{title}}</h2><h4>{{pubDate}}</h4></p><p>{{primary_author}}</p></a></article>',
+		onPageLoad			: false,
+		onKeyUp				: true,
+		result_template 	: '<article class="post-card-mini rpg-box post gh-search-item" id="gh-{{ref}}" data-link="{{link}}" data-title="{{title}}" data-pubDate="{{pubDate}}" data-authors="{{author}}" data-authorImgs="{{authorImg}}" data-featureImage="{{featureImage}}" data-authorSlugs="{{authorSlug}}"></article>',
 		info_template		: "<p>Number of posts found: {{amount}}</p>",
 		displaySearchInfo	: true,
 		zeroResultsInfo		: true,
 		before				: false,
-		onComplete			: false,
+		onComplete			: formatResults,
 		includepages		: false,
 		filterfields		: false,
 		subpath				: "",
@@ -3187,7 +3231,7 @@ lunr.QueryParser.parseBoost = function (parser) {
 
 	var getSubpathKey = function(str) {
 		return str.replace(/^\//, "").replace(/\//g, "-")
-	}
+  }
 
 	var lastTimeoutID = null;
 
@@ -3233,7 +3277,7 @@ lunr.QueryParser.parseBoost = function (parser) {
 		this.latestPost = 0;
 		var params = {
 			limit: "all",
-			include: "tags",
+			include: "tags,authors",
 			formats: ["plaintext"]
 		};
 		if  ( this.includepages ){
@@ -3249,7 +3293,11 @@ lunr.QueryParser.parseBoost = function (parser) {
 				this.field('description');
 				this.field('plaintext');
 				this.field('pubDate');
-				this.field('tag');
+        this.field('tag');
+        this.field('author');
+        this.field('authorImg');
+        this.field('authorSlug');
+        this.field('featureImage');
 				idxSrc.forEach(function (arrayItem) {
 					// console.log("start indexing an item: " + arrayItem.id);
 					// Track the latest value of updated_at,  to stash in localStorage
@@ -3265,13 +3313,33 @@ lunr.QueryParser.parseBoost = function (parser) {
 					var category = tag_arr.join(", ");
 					if (category.length < 1){
 						category = "undefined";
-					}
+          }
+          var author_arr = arrayItem.authors.map(function(v) {
+            return {
+              name: v.name,
+              img: v.profile_image,
+              slug: v.slug
+            };
+          });
+          var authors = author_arr.map(function(a) {
+            return a.name;
+          }).join(",");
+          var authorImgs = author_arr.map(function(a) {
+            return a.img;
+          }).join(",");
+          var authorSlugs = author_arr.map(function(a) {
+            return a.slug;
+          }).join(",");
 					var parsedData 	= {
 						id 			: String(arrayItem.id),
 						title 		: String(arrayItem.title),
 						description	: String(arrayItem.custom_excerpt),
 						plaintext 	: String(arrayItem.plaintext),
-						pubDate 	: String(arrayItem.published_at),
+            pubDate 	: String(arrayItem.published_at),
+            author   : String(authors),
+            authorImg : String(authorImgs),
+            authorSlug : String(authorSlugs),
+            featureImage : String(arrayItem.feature_image),
 						tag 		: category
 					}
 					this.add(parsedData)
@@ -3281,7 +3349,11 @@ lunr.QueryParser.parseBoost = function (parser) {
 						description: arrayItem.custom_excerpt,
 						pubDate: prettyDate(parsedData.pubDate),
 						link: localUrl,
-						tags: tag_arr
+            author: authors,
+            authorImg: authorImgs,
+            authorSlug: authorSlugs,
+            featureImage: arrayItem.feature_image,
+            tags: tag_arr
 					};
 					// If there is a metadata "pre"-processor for the item, run it here.
 					if (me.item_preprocessor) {

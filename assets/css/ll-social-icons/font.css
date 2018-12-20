@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'll-social-icons';
-  src:  url('ll-social-icons.eot?xbjjq2');
-  src:  url('ll-social-icons.eot?xbjjq2#iefix') format('embedded-opentype'),
-    url('ll-social-icons.ttf?xbjjq2') format('truetype'),
-    url('ll-social-icons.woff?xbjjq2') format('woff'),
-    url('ll-social-icons.svg?xbjjq2#ll-social-icons') format('svg');
+  src:  url('ll-social-icons.eot?quje4y');
+  src:  url('ll-social-icons.eot?quje4y#iefix') format('embedded-opentype'),
+    url('ll-social-icons.ttf?quje4y') format('truetype'),
+    url('ll-social-icons.woff?quje4y') format('woff'),
+    url('ll-social-icons.svg?quje4y#ll-social-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-search:before {
+  content: "\e909";
+}
 .icon-palette:before {
   content: "\e908";
 }
