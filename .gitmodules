@@ -1,0 +1,3 @@
+[submodule "assets/ghostHunter"]
+	path = assets/ghostHunter
+	url = git@github.com:lastlifedevs/ghostHunter.git
