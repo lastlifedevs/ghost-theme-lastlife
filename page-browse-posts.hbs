@@ -4,24 +4,28 @@ into the {body} of the default.hbs template --}}
 {{> "header"}} 
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
-        <div class="page-content">
-            <form>
-                <label for="search-field">
-                    <i class="ll-social-icon icon-search"></i>
-                    <input id="search-field" />
-                </label>
-            </form>
-        </div>
+        <header class="post-full-header">
+            <h1 class="post-full-title">Browse Posts</h1>
+        </header>
+
+        <form id="searchForm" class="page-content">
+            <div class="search-container">
+                <i class="ll-social-icon icon-search"></i>
+                <input id="searchField" placeholder="Search posts by title, author, game, or text content"/>
+            </div>
+        </form>
 
         <section id="results" class="posts-list">
-            <span id="initialResults">
-                <p>Displaying the most recent 30 posts.</p>
-                {{#get "posts" limit="30" order="desc" include="authors"}}            
-                    {{#foreach posts}}
-                        {{> "post-card-mini"}}
-                    {{/foreach}}
-                {{/get}}
-            </span>
+            <div class="page-content">
+                <section class="page-description">
+                    <p>Displaying the 30 most recent posts. Use the search field above to search the full archive of posts.</p>
+                </section>    
+            </div>
+            {{#get "posts" limit="30" order="desc" include="authors"}}            
+                {{#foreach posts}}
+                    {{> "post-card-mini"}}
+                {{/foreach}}
+            {{/get}}
         </section>
     </div>
 </main>
@@ -31,7 +35,7 @@ default.hbs --}}
 {{#contentFor "scripts"}}
 <script type="text/javascript" src="{{asset "ghostHunter/dist/jquery.ghosthunter.js"}}"></script>
 <script>
-    $("#search-field").ghostHunter({
+    $("#searchField").ghostHunter({
         results: "#results"
     });
 </script>

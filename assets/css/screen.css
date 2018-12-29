@@ -123,7 +123,6 @@ body {
 
 .page-content {
     background: #1a1d2f;
-    padding-bottom: 1rem;
     box-shadow: inset #232940 0px 0px 9px 4px;
     border-radius: 5px;
 }
@@ -134,6 +133,10 @@ body {
 
 
 /* About Page */
+
+#aboutContainer {
+    padding-bottom: 1rem;
+}
 
 #links > .social-media-links {
     display: flex;
@@ -369,6 +372,57 @@ body {
     text-shadow: 2px 2px #000;
 }
 
+/**
+* Browse posts/search page
+*/
+#searchForm {
+    width: 66%;
+    margin: 1rem auto;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0;
+}
+
+#searchField {
+    height: 3.5rem;
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+}
+
+@media (max-width: 869px) {
+    #searchForm {
+        width: 95%;
+    }
+}
+
+@media (max-width: 520px) {
+    #searchField {
+        font-size: 1.5rem;
+    }
+}
+
+.search-container > .icon-search {
+    font-size: 2rem;
+    color: #bfcde0;
+    padding: 0 1rem 0 0.5rem;
+}
+
+.search-container {
+    position: relative;
+    width: 95%;
+    display: flex;
+    align-items: center;
+}
+
+.results-header {
+    font-size: 2.5rem;
+    margin: 1rem auto 2rem;
+    width: 100%;
+    text-align: center;
+}
 
 /* 4. Site Header
 /* ---------------------------------------------------------- */
@@ -1041,7 +1095,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     min-width: 0;
 }
 
-.post-card-mini:nth-child(2n) {
+.post-card-mini:nth-child(2n+1) {
     margin: 5px 0 5px 5px;
 }
 
@@ -1094,10 +1148,10 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
         width: calc(33% - 9px);
         margin: 5px;
     }
-    .post-card-mini:nth-child(2n) {
+    .post-card-mini:nth-child(2n+1) {
         margin: 5px;
     }
-    .post-card-mini:nth-child(3n) {
+    .post-card-mini:nth-child(3n+1) {
         margin: 5px 0 5px 5px;
     }
     .post-card-mini a.post-card-image-link {
@@ -1111,8 +1165,10 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     }
     .post-card-title {
         height: 5.75rem;
-        white-space: normal;
         font-size: 1.75rem;
+    }
+    .post-card-mini .post-card-title {
+        white-space: normal;
     }
     .post-card-mini .post-card-content-link {
         padding: 0.75rem 1rem 0 1rem;

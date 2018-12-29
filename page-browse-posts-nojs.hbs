@@ -17,6 +17,7 @@ into the {body} of the default.hbs template --}}
         </div>
 
         <div class="posts-list">
+            <div class="hidden"></div>
             {{#get "posts" limit="all" order="desc" include="authors"}}            
                 {{#foreach posts}}
                     {{> "post-card-mini"}}
