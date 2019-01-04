@@ -141,6 +141,7 @@ body {
 #links > .social-media-links {
     display: flex;
     margin: 0 5rem 1rem;
+    padding-bottom: 2rem;
     justify-content: space-between;
     font-size: 4rem;
 }
