@@ -1580,6 +1580,10 @@ The first (most recent) post in the list is styled to be bigger than the others 
     }
 }
 
+.video-post-full-content {
+    margin-top: 1rem;
+    padding-top: 3rem;
+}
 
 /* Full bleed images (#full)
 Super neat trick courtesy of @JoelDrapper
@@ -2006,7 +2010,7 @@ Usage (In Ghost editor):
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    padding: 3vw 0 0;
+    padding: 3rem 0 0;
     max-width: 840px;
 }
 
