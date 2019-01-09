@@ -21,7 +21,7 @@ into the {body} of the default.hbs template --}}
             </header>
 
             <div id="vidContainer">
-                <object id="vidPlayer" class="hidden" data="https://www.youtube.com/embed/"></object>
+                
             </div>
 
             <section class="post-full-content video-post-full-content">
@@ -105,5 +105,10 @@ nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghos
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
-    <script>$('#vidPlayer').attr("data", function() { return $(this).attr("data") + videoHash }).removeClass("hidden");</script>
+    <script>
+        var vidPlayer = document.createElement('object');
+        vidPlayer.id = 'vidPlayer';
+        vidPlayer.data = 'https://www.youtube.com/embed/ ' + videoHash;
+        document.getElementById('vidContainer').appendChild(vidPlayer);
+    </script>
 {{/contentFor}}
