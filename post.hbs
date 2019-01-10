@@ -36,7 +36,7 @@ into the {body} of the default.hbs template --}}
 
         </article>
         
-        <a id="nodebb-comments"></a>
+        <div id="nodebb"></div>
         <script type="text/javascript">
         var nbb = {};
         nbb.url = '//lastlifebeta.stream/forum';
@@ -52,12 +52,12 @@ into the {body} of the default.hbs template --}}
         <div id="nbb-post-header" class="display-none">
             {{#if feature_image}}
             <div>
-                <img src="{{../post.feature_image}}" alt="{{../post.title}}" />
+                <img src="{{img_url feature_image absolute="true"}}" alt="{{../post.title}}" />
             </div>
             {{/if}}
         </div>
         <div id="nbb-post-html" class="display-none">
-            {{../post.html}}
+            {{../post.html absolute_urls=true}}
         </div>
 
     </div>
