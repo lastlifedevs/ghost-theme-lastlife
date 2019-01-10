@@ -65,6 +65,9 @@ body {
     }
 }
 
+.display-none {
+    display: none;
+}
 
 /* 2. Layout - Page building blocks
 /* ---------------------------------------------------------- */
