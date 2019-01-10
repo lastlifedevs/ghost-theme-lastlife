@@ -32,23 +32,30 @@ into the {body} of the default.hbs template --}}
 
         </article>
 
+        <a id="nodebb-comments"></a>
+        <script type="text/javascript">
+        var nbb = {};
+        nbb.url = '//lastlifebeta.stream/forum';
+
+        (function() {
+        nbb.articleID = '{{../post.id}}'; nbb.title = '{{../post.title}}';
+        nbb.tags = [{{#../post.tags}}"{{name}}",{{/../post.tags}}];
+        nbb.script = document.createElement('script'); nbb.script.type = 'text/javascript'; nbb.script.async = true;
+        nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghost.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
+        })();
+        </script>
+        <div id="nbb-post-html" class="hidden">
+            <div>
+                <a id="nbb-video-link" href="">
+                    <img src="{{../post.feature_image}}" alt="View the video for this post on YouTube" />
+                </a>
+            </div>
+            {{../post.html}}
+        </div>
+
     </div>
 </main>
-
-<a id="nodebb-comments"></a>
-<script type="text/javascript">
-var nbb = {};
-nbb.url = '//lastlifebeta.stream/forum';
-
-(function() {
-nbb.articleID = '{{../post.id}}'; nbb.title = '{{../post.title}}';
-nbb.tags = [{{#../post.tags}}"{{name}}",{{/../post.tags}}];
-nbb.script = document.createElement('script'); nbb.script.type = 'text/javascript'; nbb.script.async = true;
-nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghost.js';
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
-})();
-</script>
-<div id="nbb-post-html" class="hidden">{{../post.html}}</div>
 
 {{!-- Links to Previous/Next posts --}}
 <aside class="read-next outer">
@@ -110,5 +117,6 @@ nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghos
         vidPlayer.id = 'vidPlayer';
         vidPlayer.data = 'https://www.youtube.com/embed/' + videoHash;
         document.getElementById('vidContainer').appendChild(vidPlayer);
+        document.getElementById('nbb-video-link').href = 'https://www.youtube.com/watch?v=' + videoHash;
     </script>
 {{/contentFor}}
