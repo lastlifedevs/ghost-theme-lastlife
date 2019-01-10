@@ -49,10 +49,14 @@ into the {body} of the default.hbs template --}}
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
         })();
         </script>
-        <div id="nbb-post-html" class="hidden">
+        <div id="nbb-post-header" class="display-none">
+            {{#if feature_image}}
             <div>
                 <img src="{{../post.feature_image}}" alt="{{../post.title}}" />
             </div>
+            {{/if}}
+        </div>
+        <div id="nbb-post-html" class="display-none">
             {{../post.html}}
         </div>
 
