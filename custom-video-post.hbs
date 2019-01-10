@@ -33,18 +33,6 @@ into the {body} of the default.hbs template --}}
         </article>
 
         <div id="nodebb"></div>
-        <script type="text/javascript">
-        var nbb = {};
-        nbb.url = '//lastlifebeta.stream/forum';
-
-        (function() {
-        nbb.articleID = '{{../post.id}}'; nbb.title = '{{../post.title}}';
-        nbb.tags = [{{#../post.tags}}"{{name}}",{{/../post.tags}}];
-        nbb.script = document.createElement('script'); nbb.script.type = 'text/javascript'; nbb.script.async = true;
-        nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghost.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
-        })();
-        </script>
         <div id="nbb-post-header" class="display-none">
             <div>
                 <a id="nbb-video-link" href="/">
@@ -56,9 +44,7 @@ into the {body} of the default.hbs template --}}
                 </a>
             </div>
         </div>
-        <div id="nbb-post-html" class="display-none">
-            {{../post.html absolute_urls=true}}
-        </div>
+        <div id="nbb-post-html" class="display-none"></div>
 
     </div>
 </main>
@@ -114,8 +100,6 @@ into the {body} of the default.hbs template --}}
     </div>
 </aside>
 
-{{/post}}
-
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
     <script>
@@ -125,4 +109,23 @@ into the {body} of the default.hbs template --}}
         document.getElementById('vidContainer').appendChild(vidPlayer);
         document.getElementById('nbb-video-link').href = 'https://www.youtube.com/watch?v=' + videoHash;
     </script>
+    <script type="text/javascript">
+    var nbb = {};
+    nbb.url = '//lastlifebeta.stream/forum';
+
+    (function() {
+    nbb.articleID = '{{../post.id}}'; nbb.title = '{{../post.title}}';
+    nbb.tags = [{{#../post.tags}}"{{name}}",{{/../post.tags}}];
+    nbb.script = document.createElement('script'); nbb.script.type = 'text/javascript'; nbb.script.async = true;
+    nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghost.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
+    })();
+    $.get(ghost.url.api('posts/'+nbb.articleID, {absolute_urls: true})).done(function (data){
+        document.getElementById('nbb-post-html').innerHTML = data.posts[0].html;
+    }).fail(function  (err){
+        console.log(err);
+    });
+    </script>
 {{/contentFor}}
+
+{{/post}}
