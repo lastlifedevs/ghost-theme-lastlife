@@ -2185,10 +2185,11 @@ Usage (In Ghost editor):
 
 /** NodeBB comment integration */
 
-#nodebb {
+#nodebb-container {
     display: flex;
     justify-content: center;
     font-weight: 700;
+    font-size: 2rem;
 }
 
 #nbbPublishForm {
@@ -2199,7 +2200,6 @@ Usage (In Ghost editor):
 #nbbPublishButton {
     background: #1a1d2f;
     padding: 1rem;
-    font-weight: 700;
     border-radius: 5px;
     box-shadow: inset 0 0 3px 3px #22273e;
     color: #5cb2e0;
