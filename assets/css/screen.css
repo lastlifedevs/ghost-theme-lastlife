@@ -2190,6 +2190,11 @@ Usage (In Ghost editor):
     justify-content: center;
     font-weight: 700;
     font-size: 2rem;
+    border-top: 1px inset #a7a7a7;
+}
+
+#nodebb {
+    display: flex;
 }
 
 #nbbPublishForm {
@@ -2208,6 +2213,7 @@ Usage (In Ghost editor):
 #forumTopicLink {
     font-size: 2rem;
     padding: 1rem;
+    box-shadow: none;
 }
 
 #forumTopicLink:hover {
