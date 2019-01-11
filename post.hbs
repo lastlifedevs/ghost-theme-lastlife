@@ -120,6 +120,15 @@ into the {body} of the default.hbs template --}}
         console.log(err);
     });
     </script>
+    <script>
+        setTimeout(function() {
+            let $nbbCont = $('#nodebb-container');
+            if($nbbCont.find('a')[0] == undefined 
+                && $('#nodebb-container').find('button')[0] == undefined) {
+                $("#nodebb-container").addClass('hidden');
+            }
+        }, 200);
+    </script>
 {{/contentFor}}
 
 {{/post}}
