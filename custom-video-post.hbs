@@ -123,7 +123,7 @@ into the {body} of the default.hbs template --}}
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
     })();
     $.get(ghost.url.api('posts/'+nbb.articleID, {absolute_urls: true})).done(function (data){
-        document.getElementById('nbb-post-html').innerHTML = data.posts[0].html;
+        document.getElementById('nbb-post-html').innerHTML = data.posts[0].html.replace('http://' + document.location.host, 'https://' + document.location.host);
     }).fail(function  (err){
         console.log(err);
     });
