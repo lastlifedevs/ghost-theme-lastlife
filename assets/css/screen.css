@@ -32,6 +32,7 @@ production stylesheet in assets/built/screen.css
 
 @import "global.css";
 body {
+    background-color: #1a1b21;
     background-image: url(/assets/img/bg.png);
     background-attachment: fixed;
     overflow-x: unset;
