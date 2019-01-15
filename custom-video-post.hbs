@@ -112,21 +112,31 @@ into the {body} of the default.hbs template --}}
         document.getElementById('nbb-video-link').href = 'https://www.youtube.com/watch?v=' + videoHash;
     </script>
     <script type="text/javascript">
+    function htmlDecode(input)
+    {
+    var doc = new DOMParser().parseFromString(input, "text/html");
+    return doc.documentElement.textContent;
+    }
+
     var nbb = {};
     nbb.url = '//lastlifebeta.stream/forum';
 
     (function() {
-    nbb.articleID = '{{../post.id}}'; nbb.title = '{{../post.title}}';
+    nbb.articleID = '{{../post.id}}';
+    nbb.title = '{{../post.title}}';
+    nbb.title = htmlDecode(nbb.title);
     nbb.tags = [{{#../post.tags}}"{{name}}",{{/../post.tags}}];
-    nbb.script = document.createElement('script'); nbb.script.type = 'text/javascript'; nbb.script.async = true;
+    nbb.script = document.createElement('script');
+    nbb.script.type = 'text/javascript';
+    nbb.script.async = true;
     nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghost.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
-    })();
     $.get(ghost.url.api('posts/'+nbb.articleID, {absolute_urls: true})).done(function (data){
-        document.getElementById('nbb-post-html').innerHTML = data.posts[0].html.replace('http://' + document.location.host, 'https://' + document.location.host);
+        document.getElementById('nbb-post-html').innerHTML = data.posts[0].html;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
     }).fail(function  (err){
         console.log(err);
     });
+    })();
     </script>
     <script>
         setTimeout(function() {
