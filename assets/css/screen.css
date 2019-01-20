@@ -212,10 +212,6 @@ body {
     padding: 0;
 }
 
-.page-template .inner {
-    max-width: 900px;
-}
-
 .page-description {
     padding: 2rem;
     font-family: Open Sans;
