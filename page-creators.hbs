@@ -20,9 +20,9 @@ into the {body} of the default.hbs template --}}
             </section>
         </div>
 
-        {{#get "authors" limit="all" order="created_at asc"}}
+        {{#get "authors" limit="all" as |users|}}
         <div class="icons-container">
-            {{#foreach authors}}
+            {{#foreach users}}
             <figure class="user-figure">
                 <a href={{url}}><img class="profile-icon" src="{{img_url profile_image}}" data-prof-id="{{id}}"></a>
                 <figcaption class="user-caption"><span class="lg-hidden">{{name}}</span><noscript>{{name}}</noscript></figcaption>
@@ -30,7 +30,7 @@ into the {body} of the default.hbs template --}}
             {{/foreach}}
         </div>
         <div id="profiles-container" class="profiles-container-bottom hidden-md">
-            {{#foreach authors}}
+            {{#foreach users}}
             <div id="profile-{{id}}" class="creator-profile">
                 <span class="rpg-box text-emphasis creator-name">{{name}}</span>
                 <div class="rpg-box text-emphasis creator-bio">{{bio}}</div>
