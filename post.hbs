@@ -122,12 +122,13 @@ into the {body} of the default.hbs template --}}
     nbb.script.type = 'text/javascript';
     nbb.script.async = true;
     nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghost.js';
-    $.get(ghost.url.api('posts/'+nbb.articleID, {absolute_urls: true})).done(function (data){
-        document.getElementById('nbb-post-html').innerHTML = data.posts[0].html;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
-    }).fail(function  (err){
-        console.log(err);
-    });
+    $.get('https://last-life.net/ghost/api/v2/content/posts/' + nbb.articleID + '/?key=2c61c809a636d112d78e70ca73', {absolute_urls: true})
+        .then(function(resp) {
+            document.getElementById('nbb-post-html').innerHTML = data.posts[0].html;
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
+        }, function(err) {
+            console.error(err.responseJSON.errors[0].message);
+        });
     })();
     </script>
     <script>
