@@ -133,7 +133,7 @@ into the {body} of the default.hbs template --}}
     nbb.script.src = nbb.url + '/plugins/nodebb-plugin-veegie-blog-comments/lib/ghost.js';
     $.get('https://last-life.net/ghost/api/v2/content/posts/' + nbb.articleID + '/?key=2c61c809a636d112d78e70ca73', {absolute_urls: true})
         .then(function(resp) {
-            document.getElementById('nbb-post-html').innerHTML = data.posts[0].html;
+            document.getElementById('nbb-post-html').innerHTML = resp.posts[0].html;
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(nbb.script);
         }, function(err) {
             console.error(err.responseJSON.errors[0].message);
