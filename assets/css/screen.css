@@ -70,6 +70,7 @@ body {
     display: none;
 }
 
+
 /* 2. Layout - Page building blocks
 /* ---------------------------------------------------------- */
 
@@ -142,7 +143,7 @@ body {
     padding-bottom: 1rem;
 }
 
-#links > .social-media-links {
+#links>.social-media-links {
     display: flex;
     margin: 0 5rem 1rem;
     padding-bottom: 2rem;
@@ -150,50 +151,50 @@ body {
     font-size: 4rem;
 }
 
-#links > .social-media-links a {
+#links>.social-media-links a {
     box-shadow: none;
 }
 
-#links > .social-media-links a i {
+#links>.social-media-links a i {
     text-shadow: #000 1px 1px 6px;
     text-decoration: none;
 }
 
-#links > .social-media-links a:hover {
+#links>.social-media-links a:hover {
     text-decoration: none;
 }
 
-#links > .social-media-links .twitter:hover,
-#links > .social-media-links .twitter:active,
-#links > .social-media-links .twitter:focus {
+#links>.social-media-links .twitter:hover,
+#links>.social-media-links .twitter:active,
+#links>.social-media-links .twitter:focus {
     color: #1da1f2;
 }
 
-#links > .social-media-links .discord:hover,
-#links > .social-media-links .discord:active,
-#links > .social-media-links .discord:focus {
+#links>.social-media-links .discord:hover,
+#links>.social-media-links .discord:active,
+#links>.social-media-links .discord:focus {
     color: #7289da;
 }
 
-#links > .social-media-links .twitch:hover,
-#links > .social-media-links .twitch:active,
-#links > .social-media-links .twitch:focus {
+#links>.social-media-links .twitch:hover,
+#links>.social-media-links .twitch:active,
+#links>.social-media-links .twitch:focus {
     color: #6441a4;
 }
 
-#links > .social-media-links .youtube:hover,
-#links > .social-media-links .youtube:active,
-#links > .social-media-links .youtube:focus {
+#links>.social-media-links .youtube:hover,
+#links>.social-media-links .youtube:active,
+#links>.social-media-links .youtube:focus {
     color: #ff0000;
 }
 
-#links > .social-media-links .steam:hover,
-#links > .social-media-links .steam:active,
-#links > .social-media-links .steam:focus {
+#links>.social-media-links .steam:hover,
+#links>.social-media-links .steam:active,
+#links>.social-media-links .steam:focus {
     color: #000;
 }
 
-#links > .social-media-links a:active {
+#links>.social-media-links a:active {
     text-shadow: none;
     left: 1px;
     top: 1px;
@@ -373,9 +374,11 @@ body {
     text-shadow: 2px 2px #000;
 }
 
+
 /**
 * Browse posts/search page
 */
+
 #searchForm {
     width: 66%;
     margin: 1rem auto;
@@ -405,7 +408,7 @@ body {
     }
 }
 
-.search-container > .icon-search {
+.search-container>.icon-search {
     font-size: 2rem;
     color: #bfcde0;
     padding: 0 1rem 0 0.5rem;
@@ -424,6 +427,7 @@ body {
     width: 100%;
     text-align: center;
 }
+
 
 /* 4. Site Header
 /* ---------------------------------------------------------- */
@@ -545,7 +549,7 @@ div.scaleTitle {
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 460px) {
     .scaleTitle a {
         transform: scale(0.75);
     }
@@ -1552,6 +1556,7 @@ The first (most recent) post in the list is styled to be bigger than the others 
     padding-top: 3rem;
 }
 
+
 /* Full bleed images (#full)
 Super neat trick courtesy of @JoelDrapper
 
@@ -1650,7 +1655,10 @@ Usage (In Ghost editor):
 }
 
 .post-full-content hr {
-    margin: 4vw 0;
+    margin: 2rem auto;
+    width: 80%;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #39374e;
 }
 
 .post-full-content hr:after {
@@ -2180,6 +2188,7 @@ Usage (In Ghost editor):
     max-width: 840px;
 }
 
+
 /** NodeBB comment integration */
 
 #nodebb-container {
@@ -2224,6 +2233,7 @@ Usage (In Ghost editor):
     color: #fff;
     margin-right: 0.5rem;
 }
+
 
 /* 7.4. Related posts
 /* ---------------------------------------------------------- */
@@ -2770,6 +2780,25 @@ Usage (In Ghost editor):
 }
 
 
+/* Scale and reformat as necessary for narrow width devices. */
+
+@media(max-width:768px) {
+    .creator-title {
+        line-height: 1.2;
+    }
+    .site-header-content .author-profile-image {
+        display: block;
+        margin: 2rem auto;
+    }
+}
+
+@media(max-width: 460px) {
+    .creator-title {
+        font-size: 4rem;
+    }
+}
+
+
 /* 9. Error Template
 /* ---------------------------------------------------------- */
 
@@ -3042,6 +3071,7 @@ Usage (In Ghost editor):
 @media (max-width: 650px) {
     .site-footer-content {
         flex-direction: column;
+        width: 66%;
     }
     .site-footer-nav a:first-child {
         margin-left: 0;
