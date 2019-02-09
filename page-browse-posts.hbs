@@ -21,7 +21,7 @@ into the {body} of the default.hbs template --}}
                     <p>Displaying the 30 most recent posts. Use the search field above to search the full archive of posts.</p>
                 </section>    
             </div>
-            {{#get "posts" limit="30" order="desc" include="authors"}}            
+            {{#get "posts" limit="30" order="published_at desc" include="authors"}}            
                 {{#foreach posts}}
                     {{> "post-card-mini"}}
                 {{/foreach}}

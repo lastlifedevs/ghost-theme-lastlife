@@ -1183,6 +1183,19 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     }
 }
 
+@media (max-width: 767px) {
+    .post-card-mini {
+        width: calc(50% - 10px);
+        margin: 5px;
+    }
+    .post-card-mini:nth-child(2n+1) {
+        margin: 5px;
+    }
+    .post-card-mini:nth-child(3n+1) {
+        margin: 5px 0 5px 5px;
+    }
+}
+
 .posts-list {
     display: flex;
     flex-wrap: wrap;
