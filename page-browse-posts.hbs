@@ -29,14 +29,3 @@ into the {body} of the default.hbs template --}}
         </section>
     </div>
 </main>
-
-{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in
-default.hbs --}}
-{{#contentFor "scripts"}}
-<script type="text/javascript" src="{{asset "ghostHunter/dist/jquery.ghosthunter.min.js"}}"></script>
-<script>
-    $("#searchField").ghostHunter({
-        results: "#results"
-    });
-</script>
-{{/contentFor}}
